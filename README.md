@@ -36,4 +36,4 @@ APIs:
 - Real-time market data
 - Leaderboard for traders
 - Advanced chart analysis tools
-- Mobile app version
+
