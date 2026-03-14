@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - LearnTrading.org</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-item {
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+        }
+        .faq-question {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-normal);
+        }
+        .faq-question:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(0, 217, 255, 0.05);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+        }
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            transition: transform 0.3s ease;
+        }
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">LEARNTRADING</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html" class="active">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html" class="btn btn-primary" style="padding: 0.7rem 1.5rem;">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="min-height: 50vh;">
+        <div class="container text-center">
+            <h1>Frequently Asked Questions</h1>
+            <p style="font-size: 1.3rem; max-width: 700px; margin: 0 auto; color: #b8c5d6;">
+                Find answers to common questions about trading, accounts, security, and more
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Categories -->
+    <section class="section">
+        <div class="container">
+            <!-- Getting Started -->
+            <div class="card" style="margin-bottom: 3rem;">
+                <h2 style="margin-bottom: 2rem;">Getting Started</h2>
+
+                <div class="faq-item" onclick="toggleFaq(1)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">How do I create an account?</h4>
+                        <span class="faq-icon" id="icon-1">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-1">
+                        <p>Creating an account is simple and takes less than 2 minutes. Click the "Create Free Account" button, enter your email address, create a strong password, and verify your email. You'll then complete our secure KYC (Know Your Customer) process by uploading a government-issued ID and proof of address. Once verified, you can deposit funds and start trading immediately.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(2)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">What is the minimum deposit required?</h4>
+                        <span class="faq-icon" id="icon-2">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-2">
+                        <p>The minimum deposit varies by account type: Starter accounts require $500, Professional accounts require $5,000, and Enterprise accounts require $50,000. However, you can open an account with no minimum deposit and fund it whenever you're ready to trade.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(3)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">How long does account verification take?</h4>
+                        <span class="faq-icon" id="icon-3">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-3">
+                        <p>Most accounts are verified within 24 hours. During peak periods, verification may take up to 48 hours. You'll receive an email notification once your account is approved. To speed up the process, ensure all documents are clear, valid, and match the information you provided during registration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trading -->
+            <div class="card" style="margin-bottom: 3rem;">
+                <h2 style="margin-bottom: 2rem;">Trading</h2>
+
+                <div class="faq-item" onclick="toggleFaq(4)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">What markets can I trade?</h4>
+                        <span class="faq-icon" id="icon-4">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-4">
+                        <p>We offer access to 500+ cryptocurrencies (Bitcoin, Ethereum, and altcoins), 50+ forex pairs (EUR/USD, GBP/USD, etc.), major stock indices (S&P 500, NASDAQ, FTSE), individual stocks, and commodities (gold, silver, oil). All markets are available 24/7 except stock markets which follow regular exchange hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(5)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">What are your trading fees?</h4>
+                        <span class="faq-icon" id="icon-5">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-5">
+                        <p>Our fee structure is transparent and competitive: Starter accounts pay 0.2% per trade, Professional accounts pay 0.1%, and Enterprise accounts pay 0.05%. There are no deposit fees for verified accounts. Withdrawal fees vary by payment method: cryptocurrency withdrawals incur network fees, while bank transfers are free for amounts over $1,000.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(6)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">Can I use leverage?</h4>
+                        <span class="faq-icon" id="icon-6">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-6">
+                        <p>Yes, we offer leverage up to 1:100 depending on the asset class and your account type. Crypto leverage is capped at 1:20, forex at 1:100, and stocks at 1:5. Please note that leverage amplifies both gains and losses. We strongly recommend understanding the risks before using leverage and utilizing stop-loss orders to manage risk.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(7)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">What order types do you support?</h4>
+                        <span class="faq-icon" id="icon-7">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-7">
+                        <p>We support all major order types: Market Orders (instant execution at current price), Limit Orders (execute at specified price or better), Stop Loss (automatic sell to limit losses), Take Profit (automatic sell to lock in gains), and Trailing Stop (dynamic stop loss that follows price movement). Advanced users can also access OCO (One-Cancels-Other) and Iceberg orders.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deposits & Withdrawals -->
+            <div class="card" style="margin-bottom: 3rem;">
+                <h2 style="margin-bottom: 2rem;">Deposits & Withdrawals</h2>
+
+                <div class="faq-item" onclick="toggleFaq(8)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">How do I deposit funds?</h4>
+                        <span class="faq-icon" id="icon-8">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-8">
+                        <p>We accept multiple deposit methods: bank transfer (ACH/SEPA), credit/debit cards (Visa/Mastercard), and cryptocurrency transfers. To deposit, navigate to your dashboard, click "Deposit," select your preferred method, and follow the instructions. Crypto deposits are instant, card deposits process within minutes, and bank transfers take 1-3 business days.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(9)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">How long do withdrawals take?</h4>
+                        <span class="faq-icon" id="icon-9">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-9">
+                        <p>Cryptocurrency withdrawals are processed within 1 hour after approval. Bank transfers (ACH/SEPA) take 2-5 business days. Card withdrawals take 3-5 business days. All withdrawals require security verification via email or SMS. For your security, first-time withdrawals to new addresses/accounts undergo a 24-hour security hold.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(10)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">Are there withdrawal limits?</h4>
+                        <span class="faq-icon" id="icon-10">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-10">
+                        <p>Daily withdrawal limits depend on your verification level and account type. Basic verified accounts can withdraw up to $10,000/day, fully verified accounts up to $100,000/day, and Enterprise accounts have custom limits. If you need to withdraw more, contact our support team to request a limit increase.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security -->
+            <div class="card" style="margin-bottom: 3rem;">
+                <h2 style="margin-bottom: 2rem;">Security</h2>
+
+                <div class="faq-item" onclick="toggleFaq(11)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">How do you protect my funds?</h4>
+                        <span class="faq-icon" id="icon-11">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-11">
+                        <p>We employ multiple layers of security: 98% of crypto assets are stored in offline cold wallets, all online systems use military-grade 256-bit encryption, and funds are protected by $250M insurance coverage. We also implement multi-signature wallets requiring multiple approvals for large transactions, and undergo regular third-party security audits.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(12)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">Do you offer two-factor authentication?</h4>
+                        <span class="faq-icon" id="icon-12">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-12">
+                        <p>Yes, we strongly recommend enabling 2FA (Two-Factor Authentication). We support Google Authenticator, Authy, and SMS-based 2FA. Once enabled, you'll need to enter a time-based code along with your password when logging in or making withdrawals. This significantly increases account security.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(13)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">What should I do if I suspect unauthorized access?</h4>
+                        <span class="faq-icon" id="icon-13">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-13">
+                        <p>If you suspect unauthorized access, immediately change your password, enable 2FA if you haven't already, and contact our 24/7 support team. We'll temporarily freeze your account to prevent any unauthorized transactions while we investigate. Check your email for any suspicious login notifications and review your recent activity in the dashboard.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Support -->
+            <div class="card">
+                <h2 style="margin-bottom: 2rem;">Technical Support</h2>
+
+                <div class="faq-item" onclick="toggleFaq(14)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">Is there a mobile app?</h4>
+                        <span class="faq-icon" id="icon-14">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-14">
+                        <p>Yes! Our mobile app is available for iOS and Android with full trading functionality, real-time charts, push notifications for price alerts, and biometric login. Download from the App Store or Google Play. The app syncs seamlessly with the web platform, so your watchlists and settings are always up to date.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(15)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">Do you offer API access?</h4>
+                        <span class="faq-icon" id="icon-15">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-15">
+                        <p>Yes, Professional and Enterprise accounts have full REST and WebSocket API access for algorithmic trading. Our API documentation includes code examples in Python, JavaScript, and more. You can build custom trading bots, backtest strategies, and integrate with third-party tools. Rate limits apply based on account type.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(16)">
+                    <div class="faq-question">
+                        <h4 style="margin: 0; color: #fff;">How can I contact support?</h4>
+                        <span class="faq-icon" id="icon-16">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-16">
+                        <p>We offer 24/7 support via live chat (instant), email (24-hour response), and phone (+1-800-555-1234). For urgent account issues, use live chat for the fastest response. Technical questions are best handled via email where our team can provide detailed explanations and screenshots. Enterprise clients have dedicated account managers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Still Have Questions -->
+    <section class="section" style="background: rgba(0, 217, 255, 0.03);">
+        <div class="container text-center">
+            <h2>Still Have Questions?</h2>
+            <p style="font-size: 1.15rem; max-width: 600px; margin: 0 auto 2rem; color: #b8c5d6;">
+                Our support team is here to help 24/7
+            </p>
+            <a href="contact.html" class="btn btn-primary">Contact Support</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>LearnTrading</h4>
+                    <p style="color: #b8c5d6;">Professional trading platform built for modern traders.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="dashboard.html">Trading Dashboard</a></li>
+                        <li><a href="#">Markets</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LearnTrading.org. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function toggleFaq(id) {
+            const answer = document.getElementById('answer-' + id);
+            const icon = document.getElementById('icon-' + id);
+            
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

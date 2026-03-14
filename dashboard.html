@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Dashboard - LearnTrading.org</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">LEARNTRADING</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="#">Markets</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">History</a></li>
+                <li><a href="index.html" class="btn btn-secondary" style="padding: 0.7rem 1.5rem;">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <div class="dashboard-header" style="margin-top: 80px;">
+        <div class="container">
+            <div class="flex-between" style="align-items: center;">
+                <div>
+                    <h2 style="margin: 0;">Welcome Back, Trader</h2>
+                    <p style="margin: 0; color: #b8c5d6;">Last login: Today at 09:24 AM</p>
+                </div>
+                <div class="flex gap-sm">
+                    <button class="btn btn-success">Deposit</button>
+                    <button class="btn btn-secondary">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Balance Cards -->
+            <div class="grid-4">
+                <div class="card balance-card">
+                    <p style="opacity: 0.9; margin-bottom: 0.5rem;">Total Balance</p>
+                    <div class="balance-amount">$47,892.50</div>
+                    <p class="profit-positive" style="font-weight: 600; font-size: 1.1rem;">
+                        +$2,341.20 (+5.14%) Today
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Available Balance</p>
+                    <h3 style="font-size: 2rem; margin: 0.5rem 0;">$32,450.00</h3>
+                    <span class="badge badge-success">Ready to Trade</span>
+                </div>
+                
+                <div class="card">
+                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">In Open Positions</p>
+                    <h3 style="font-size: 2rem; margin: 0.5rem 0;">$15,442.50</h3>
+                    <span class="badge badge-info">7 Active Trades</span>
+                </div>
+                
+                <div class="card">
+                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Total P&L (30d)</p>
+                    <h3 class="profit-positive" style="font-size: 2rem; margin: 0.5rem 0;">+$8,234.90</h3>
+                    <span class="badge badge-success">+21.3%</span>
+                </div>
+            </div>
+
+            <!-- Main Trading Interface -->
+            <div class="grid-2" style="margin-top: 2rem; align-items: start;">
+                <!-- Live Chart -->
+                <div class="card" style="grid-row: span 2;">
+                    <div class="flex-between" style="margin-bottom: 1rem;">
+                        <h3 style="margin: 0;">BTC/USD</h3>
+                        <div class="flex gap-sm">
+                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(0,217,255,0.1);">1H</button>
+                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--gradient-primary);">4H</button>
+                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(0,217,255,0.1);">1D</button>
+                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(0,217,255,0.1);">1W</button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-md" style="margin-bottom: 1.5rem;">
+                        <div>
+                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">Price</p>
+                            <h3 style="margin: 0.2rem 0; color: var(--electric-green);">$68,742.30</h3>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">24h Change</p>
+                            <h4 class="profit-positive" style="margin: 0.2rem 0;">+$1,234.50 (+1.83%)</h4>
+                        </div>
+                        <div>
+                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">24h Volume</p>
+                            <h4 style="margin: 0.2rem 0; color: #fff;">$28.4B</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="tradingChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Quick Trade Panel -->
+                <div class="card">
+                    <h3>Quick Trade</h3>
+                    <div class="flex gap-sm" style="margin-bottom: 1.5rem;">
+                        <button class="btn btn-success" style="flex: 1;" onclick="selectTradeType('buy')">BUY</button>
+                        <button class="btn btn-danger" style="flex: 1;" onclick="selectTradeType('sell')">SELL</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Amount (USD)</label>
+                        <input type="number" class="form-input" placeholder="0.00" value="1000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Asset</label>
+                        <select class="form-select">
+                            <option>BTC - Bitcoin</option>
+                            <option>ETH - Ethereum</option>
+                            <option>EUR/USD</option>
+                            <option>AAPL - Apple Inc.</option>
+                            <option>GOLD</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Order Type</label>
+                        <select class="form-select">
+                            <option>Market Order</option>
+                            <option>Limit Order</option>
+                            <option>Stop Loss</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex gap-sm" style="background: rgba(0,217,255,0.05); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <div style="flex: 1;">
+                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Est. Fee</p>
+                            <p style="font-size: 1.1rem; margin: 0; font-weight: 600;">$1.00</p>
+                        </div>
+                        <div style="flex: 1;">
+                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">You'll Get</p>
+                            <p style="font-size: 1.1rem; margin: 0; font-weight: 600;">0.01453 BTC</p>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%; font-size: 1.1rem;">Execute Trade</button>
+                </div>
+
+                <!-- Market Watchlist -->
+                <div class="card">
+                    <h3>Watchlist</h3>
+                    <ul class="asset-list">
+                        <li class="asset-item">
+                            <div class="flex" style="align-items: center; gap: 1rem;">
+                                <div class="asset-icon">₿</div>
+                                <div>
+                                    <strong>BTC/USD</strong>
+                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Bitcoin</p>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>$68,742.30</strong>
+                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+1.83%</p>
+                            </div>
+                        </li>
+                        
+                        <li class="asset-item">
+                            <div class="flex" style="align-items: center; gap: 1rem;">
+                                <div class="asset-icon">Ξ</div>
+                                <div>
+                                    <strong>ETH/USD</strong>
+                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Ethereum</p>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>$3,245.80</strong>
+                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+2.14%</p>
+                            </div>
+                        </li>
+                        
+                        <li class="asset-item">
+                            <div class="flex" style="align-items: center; gap: 1rem;">
+                                <div class="asset-icon">€</div>
+                                <div>
+                                    <strong>EUR/USD</strong>
+                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Forex</p>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>1.0842</strong>
+                                <p class="profit-negative" style="font-size: 0.85rem; margin: 0;">-0.23%</p>
+                            </div>
+                        </li>
+                        
+                        <li class="asset-item">
+                            <div class="flex" style="align-items: center; gap: 1rem;">
+                                <div class="asset-icon">🍎</div>
+                                <div>
+                                    <strong>AAPL</strong>
+                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Apple Inc.</p>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>$178.24</strong>
+                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+0.89%</p>
+                            </div>
+                        </li>
+                        
+                        <li class="asset-item">
+                            <div class="flex" style="align-items: center; gap: 1rem;">
+                                <div class="asset-icon">🥇</div>
+                                <div>
+                                    <strong>GOLD</strong>
+                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Gold Spot</p>
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <strong>$2,034.50</strong>
+                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+1.12%</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Open Positions -->
+            <div class="card" style="margin-top: 2rem;">
+                <h3>Open Positions</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Asset</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Entry Price</th>
+                            <th>Current Price</th>
+                            <th>P&L</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>BTC/USD</strong></td>
+                            <td><span class="badge badge-success">BUY</span></td>
+                            <td>0.25 BTC</td>
+                            <td>$65,200.00</td>
+                            <td>$68,742.30</td>
+                            <td class="profit-positive"><strong>+$885.58 (+5.43%)</strong></td>
+                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>ETH/USD</strong></td>
+                            <td><span class="badge badge-success">BUY</span></td>
+                            <td>5.0 ETH</td>
+                            <td>$3,100.00</td>
+                            <td>$3,245.80</td>
+                            <td class="profit-positive"><strong>+$729.00 (+4.71%)</strong></td>
+                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>EUR/USD</strong></td>
+                            <td><span class="badge badge-danger">SELL</span></td>
+                            <td>$10,000</td>
+                            <td>1.0865</td>
+                            <td>1.0842</td>
+                            <td class="profit-positive"><strong>+$21.19 (+0.21%)</strong></td>
+                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>AAPL</strong></td>
+                            <td><span class="badge badge-success">BUY</span></td>
+                            <td>50 shares</td>
+                            <td>$175.50</td>
+                            <td>$178.24</td>
+                            <td class="profit-positive"><strong>+$137.00 (+1.56%)</strong></td>
+                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="card" style="margin-top: 2rem;">
+                <h3>Recent Transactions</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Asset</th>
+                            <th>Amount</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026-03-14 09:24</td>
+                            <td>Buy</td>
+                            <td>BTC/USD</td>
+                            <td>0.05 BTC</td>
+                            <td>$68,500.00</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2026-03-14 08:15</td>
+                            <td>Sell</td>
+                            <td>ETH/USD</td>
+                            <td>2.0 ETH</td>
+                            <td>$3,200.00</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2026-03-13 22:30</td>
+                            <td>Buy</td>
+                            <td>AAPL</td>
+                            <td>50 shares</td>
+                            <td>$175.50</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>2026-03-13 18:45</td>
+                            <td>Deposit</td>
+                            <td>USD</td>
+                            <td>$10,000.00</td>
+                            <td>-</td>
+                            <td><span class="badge badge-success">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Trading Chart
+        const ctx = document.getElementById('tradingChart').getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(0, 217, 255, 0.3)');
+        gradient.addColorStop(1, 'rgba(0, 217, 255, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
+                datasets: [{
+                    label: 'BTC/USD',
+                    data: [67200, 67850, 67400, 68200, 68900, 68300, 68742],
+                    borderColor: '#00d9ff',
+                    backgroundColor: gradient,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    pointHoverRadius: 6,
+                    pointBackgroundColor: '#00d9ff',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(10, 14, 26, 0.95)',
+                        titleColor: '#00d9ff',
+                        bodyColor: '#fff',
+                        borderColor: '#00d9ff',
+                        borderWidth: 1,
+                        padding: 12,
+                        displayColors: false,
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(0, 217, 255, 0.1)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#b8c5d6'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(0, 217, 255, 0.1)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            color: '#b8c5d6',
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
+
+        function selectTradeType(type) {
+            console.log('Selected trade type:', type);
+        }
+    </script>
+</body>
+</html>

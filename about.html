@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - LearnTrading.org</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">LEARNTRADING</a>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html" class="btn btn-primary" style="padding: 0.7rem 1.5rem;">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="min-height: 60vh;">
+        <div class="container text-center">
+            <h1>Building The Future of Trading</h1>
+            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto; color: #b8c5d6;">
+                LearnTrading.org is a next-generation trading platform that empowers traders with institutional-grade tools, cutting-edge technology, and unparalleled market access.
+            </p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="section">
+        <div class="container">
+            <div class="grid-2" style="gap: 4rem; align-items: center;">
+                <div>
+                    <h2>Our Mission</h2>
+                    <p style="font-size: 1.1rem;">
+                        We believe that everyone deserves access to professional-grade trading tools and fair market opportunities. Our mission is to democratize trading by providing retail traders with the same sophisticated technology previously available only to institutions.
+                    </p>
+                    <p style="font-size: 1.1rem;">
+                        Since our founding in 2018, we've processed over $2.4 billion in trading volume and helped 150,000+ traders achieve their financial goals through transparent, secure, and efficient trading infrastructure.
+                    </p>
+                </div>
+                <div class="card glass-card">
+                    <div class="stat-box">
+                        <span class="stat-number">2018</span>
+                        <span class="stat-label">Founded</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">150K+</span>
+                        <span class="stat-label">Active Users</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">$2.4B+</span>
+                        <span class="stat-label">Trading Volume</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">180+</span>
+                        <span class="stat-label">Countries</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="section" style="background: rgba(0, 217, 255, 0.03);">
+        <div class="container">
+            <h2 class="text-center">Our Core Values</h2>
+            <div class="grid-3" style="margin-top: 3rem;">
+                <div class="card">
+                    <h3>Security First</h3>
+                    <p>We employ military-grade encryption, multi-signature wallets, and cold storage to protect your assets. Your security is our top priority, backed by $250M insurance coverage.</p>
+                </div>
+                <div class="card">
+                    <h3>Transparency</h3>
+                    <p>No hidden fees, no manipulation. We provide real-time market data, clear pricing, and complete visibility into all platform operations. What you see is what you get.</p>
+                </div>
+                <div class="card">
+                    <h3>Innovation</h3>
+                    <p>We continuously invest in cutting-edge technology to provide faster execution, better analytics, and more sophisticated trading tools. Our R&D team never stops improving.</p>
+                </div>
+                <div class="card">
+                    <h3>Education</h3>
+                    <p>We believe informed traders make better decisions. Our platform includes comprehensive learning resources, market analysis, and trading tutorials to help you succeed.</p>
+                </div>
+                <div class="card">
+                    <h3>Customer Success</h3>
+                    <p>Your success is our success. Our 24/7 support team is dedicated to resolving issues quickly and helping you make the most of our platform's capabilities.</p>
+                </div>
+                <div class="card">
+                    <h3>Fair Markets</h3>
+                    <p>We ensure equal access to markets for all traders. No preferential treatment, no front-running. Everyone gets the same execution quality and pricing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Technology Infrastructure</h2>
+            <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 3rem; color: #b8c5d6;">
+                Our platform is built on enterprise-grade infrastructure designed for speed, reliability, and security
+            </p>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h4>High-Performance Matching Engine</h4>
+                    <p>Process 1.4 million orders per second with sub-millisecond latency. Our proprietary matching engine ensures instant execution and minimal slippage even during high volatility.</p>
+                    <ul style="color: #b8c5d6; margin-top: 1rem;">
+                        <li>99.9% uptime SLA</li>
+                        <li>Distributed architecture across 12 data centers</li>
+                        <li>Real-time risk management</li>
+                        <li>Automatic failover protection</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Advanced Security Infrastructure</h4>
+                    <p>Multi-layered security protecting your data and assets at every level. Regular security audits and penetration testing by leading cybersecurity firms.</p>
+                    <ul style="color: #b8c5d6; margin-top: 1rem;">
+                        <li>256-bit SSL/TLS encryption</li>
+                        <li>Multi-signature cold wallet storage</li>
+                        <li>DDoS protection and rate limiting</li>
+                        <li>24/7 security monitoring</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Smart Order Routing</h4>
+                    <p>Intelligent algorithms scan multiple liquidity providers to find the best execution price for your trades, saving you money on every transaction.</p>
+                    <ul style="color: #b8c5d6; margin-top: 1rem;">
+                        <li>Aggregated liquidity from 50+ venues</li>
+                        <li>Price improvement algorithms</li>
+                        <li>Reduced market impact</li>
+                        <li>Optimal execution guarantee</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h4>Real-Time Analytics</h4>
+                    <p>Advanced charting, technical indicators, and market analysis tools powered by machine learning give you the edge you need to make profitable trades.</p>
+                    <ul style="color: #b8c5d6; margin-top: 1rem;">
+                        <li>150+ technical indicators</li>
+                        <li>AI-powered pattern recognition</li>
+                        <li>Customizable dashboards</li>
+                        <li>Historical data analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section" style="background: rgba(0, 217, 255, 0.03);">
+        <div class="container">
+            <h2 class="text-center">Leadership Team</h2>
+            <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 3rem; color: #b8c5d6;">
+                Industry veterans with decades of combined experience in fintech, trading, and blockchain
+            </p>
+            
+            <div class="grid-3">
+                <div class="card text-center">
+                    <div style="width: 120px; height: 120px; background: var(--gradient-primary); border-radius: 50%; margin: 0 auto 1.5rem;"></div>
+                    <h4>Michael Chen</h4>
+                    <p style="color: var(--neon-cyan); margin-bottom: 1rem;">CEO & Co-Founder</p>
+                    <p>Former Goldman Sachs quantitative trader with 15 years of experience in algorithmic trading and market microstructure.</p>
+                </div>
+                
+                <div class="card text-center">
+                    <div style="width: 120px; height: 120px; background: var(--gradient-primary); border-radius: 50%; margin: 0 auto 1.5rem;"></div>
+                    <h4>Sarah Rodriguez</h4>
+                    <p style="color: var(--neon-cyan); margin-bottom: 1rem;">CTO & Co-Founder</p>
+                    <p>Previously led engineering at Coinbase. Expert in distributed systems and high-frequency trading infrastructure.</p>
+                </div>
+                
+                <div class="card text-center">
+                    <div style="width: 120px; height: 120px; background: var(--gradient-primary); border-radius: 50%; margin: 0 auto 1.5rem;"></div>
+                    <h4>David Park</h4>
+                    <p style="color: var(--neon-cyan); margin-bottom: 1rem;">Chief Security Officer</p>
+                    <p>20+ years in cybersecurity, formerly Director of Security at JP Morgan Chase. Certified ethical hacker and security architect.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Regulatory Section -->
+    <section class="section">
+        <div class="container">
+            <div class="card" style="background: var(--gradient-card); text-align: center; padding: 3rem;">
+                <h2>Regulatory Compliance</h2>
+                <p style="font-size: 1.15rem; max-width: 800px; margin: 1rem auto 2rem;">
+                    LearnTrading.org is fully licensed and regulated by major financial authorities. We comply with strict KYC/AML requirements and maintain the highest standards of financial reporting and transparency.
+                </p>
+                <div class="grid-4" style="margin-top: 2rem;">
+                    <div>
+                        <div class="stat-number" style="font-size: 2rem;">SEC</div>
+                        <p style="color: #b8c5d6;">Registered</p>
+                    </div>
+                    <div>
+                        <div class="stat-number" style="font-size: 2rem;">FINRA</div>
+                        <p style="color: #b8c5d6;">Member</p>
+                    </div>
+                    <div>
+                        <div class="stat-number" style="font-size: 2rem;">FCA</div>
+                        <p style="color: #b8c5d6;">Authorized</p>
+                    </div>
+                    <div>
+                        <div class="stat-number" style="font-size: 2rem;">MAS</div>
+                        <p style="color: #b8c5d6;">Licensed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="card" style="background: var(--gradient-primary); text-align: center; padding: 3rem;">
+                <h2 style="color: #fff;">Join 150,000+ Traders Worldwide</h2>
+                <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
+                    Experience the future of trading today
+                </p>
+                <a href="dashboard.html" class="btn" style="background: #fff; color: var(--primary-bg);">Start Trading Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>LearnTrading</h4>
+                    <p style="color: #b8c5d6;">Professional trading platform built for modern traders.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="dashboard.html">Trading Dashboard</a></li>
+                        <li><a href="#">Markets</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 LearnTrading.org. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
