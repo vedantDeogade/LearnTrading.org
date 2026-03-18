@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnTrading.org - Professional Demo Trading Platform</title>
+    <title>LearnTrading.org - Practice Trading with Demo Money | Risk-Free Stock Market Simulator</title>
+    <meta name="description" content="Learn stock market trading risk-free with virtual money. Practice buying and selling stocks, crypto, and forex with ₹10 Lakh demo cash. Live market graphs and real-time data.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,60 +22,153 @@
                 <li><a href="about.html">About</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="dashboard.html" class="btn btn-primary" style="padding: 0.7rem 1.5rem;">Dashboard</a></li>
+                <li><a href="dashboard.html" class="btn btn-primary" style="padding: 0.7rem 1.5rem;">Start Demo Trading</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Live Market Ticker Tape -->
+    <div class="ticker-tape-container">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
+                    {"proName": "FOREXCOM:NSXUSD", "title": "US 100"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR to USD"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+                    {"proName": "NSE:NIFTY", "title": "NIFTY 50"},
+                    {"proName": "NSE:BANKNIFTY", "title": "Bank Nifty"},
+                    {"proName": "BSE:SENSEX", "title": "SENSEX"},
+                    {"proName": "NSE:RELIANCE", "title": "Reliance"},
+                    {"proName": "NSE:TCS", "title": "TCS"},
+                    {"proName": "NSE:INFY", "title": "Infosys"}
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "colorTheme": "dark",
+                "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+
     <!-- Hero Section -->
-    <section class="hero-section">
+    <section class="hero-section hero-section-with-ticker">
         <div class="container">
             <div class="grid-2" style="align-items: center; gap: 4rem;">
                 <div class="fade-in-up">
-                    <h1 class="upper">Master Trading with Demographic trading and solve quizizzs to learn it  </h1>
+                    <div class="demo-badge" style="margin-bottom: 1.5rem;">
+                        🎓 100% Risk-Free Demo Platform
+                    </div>
+                    <h1>Learn Trading Risk-Free with Virtual Money</h1>
                     <p style="font-size: 1.25rem; margin-bottom: 2rem; color: #b8c5d6;">
-                        Access institutional-grade trading tools, real-time market data, and advanced analytics. 
-                        Trade crypto, forex, stocks, and commodities with confidence on our secure platform.
+                        Practice buying and selling stocks, crypto, and forex with ₹10 Lakh demo cash. 
+                        Experience real market data, live stock graphs, and professional trading tools — without risking a single rupee.
                     </p>
                     <div class="flex gap-md" style="margin-top: 2rem;">
-                        <a href="dashboard.html" class="btn btn-primary">Start Trading Now</a>
-                        <a href="about.html" class="btn btn-secondary">Learn More</a>
+                        <a href="dashboard.html" class="btn btn-primary">Start Demo Trading</a>
+                        <a href="about.html" class="btn btn-secondary">How It Works</a>
                     </div>
                     
                     <!-- Quick Stats -->
                     <div class="grid-3" style="margin-top: 3rem; gap: 2rem;">
                         <div class="stat-box fade-in-up delay-1">
-                            <span class="stat-number">$2.4B+</span>
-                            <span class="stat-label">Trading Volume</span>
+                            <span class="stat-number">₹10L</span>
+                            <span class="stat-label">Free Demo Cash</span>
                         </div>
                         <div class="stat-box fade-in-up delay-2">
-                            <span class="stat-number">150K+</span>
-                            <span class="stat-label">Active Traders</span>
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Markets to Practice</span>
                         </div>
                         <div class="stat-box fade-in-up delay-3">
-                            <span class="stat-number">99.9%</span>
-                            <span class="stat-label">Uptime</span>
+                            <span class="stat-number">₹0</span>
+                            <span class="stat-label">Real Risk</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Hero Visual -->
-                <div class="card glass-card fade-in-up delay-2" style="padding: 2rem;">
-                    <h3 style="margin-bottom: 1.5rem;">Quick Access</h3>
-                    <form style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div class="form-group">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-input" placeholder="Enter your email">
+                <!-- Live Market Preview -->
+                <div class="live-market-preview fade-in-up delay-2">
+                    <h3 style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="width: 10px; height: 10px; background: #00ff88; border-radius: 50%; display: inline-block; animation: pulse 2s infinite;"></span>
+                        Live Markets
+                    </h3>
+                    <div class="market-stats-grid">
+                        <div class="market-stat-card" id="stat-nifty">
+                            <div class="symbol">NIFTY 50</div>
+                            <div class="price">22,450.30</div>
+                            <div class="change positive">+0.85%</div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-input" placeholder="Enter password">
+                        <div class="market-stat-card" id="stat-sensex">
+                            <div class="symbol">SENSEX</div>
+                            <div class="price">73,890.20</div>
+                            <div class="change positive">+0.72%</div>
                         </div>
-                        <button type="button" class="btn btn-primary" onclick="window.location.href='dashboard.html'">Login to Dashboard</button>
-                        <p style="text-align: center; font-size: 0.9rem;">
-                            Don't have an account? <a href="#register" style="font-weight: 600;">Register now</a>
-                        </p>
-                    </form>
+                        <div class="market-stat-card" id="stat-btc">
+                            <div class="symbol">BTC/USD</div>
+                            <div class="price">$68,742.30</div>
+                            <div class="change positive">+1.83%</div>
+                        </div>
+                        <div class="market-stat-card" id="stat-eth">
+                            <div class="symbol">ETH/USD</div>
+                            <div class="price">$3,245.80</div>
+                            <div class="change positive">+2.14%</div>
+                        </div>
+                    </div>
+                    <!-- Mini Chart Widget -->
+                    <div style="padding: 0 1rem 1rem;">
+                        <div class="tradingview-widget-container" style="height: 220px;">
+                            <div id="tradingview-mini-chart"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+                            {
+                                "symbol": "NSE:NIFTY",
+                                "width": "100%",
+                                "height": "220",
+                                "locale": "en",
+                                "dateRange": "1D",
+                                "colorTheme": "dark",
+                                "isTransparent": true,
+                                "autosize": false,
+                                "largeChartUrl": "dashboard.html"
+                            }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Chart Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">Live Stock Market Charts</h2>
+            <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 2rem; color: #b8c5d6;">
+                Track real-time market data. Click any stock below to view its live chart.
+            </p>
+            <div class="chart-widget-container" style="height: 500px;">
+                <div class="tradingview-widget-container" style="height: 100%;">
+                    <div id="tradingview-chart" style="height: 100%;"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                    {
+                        "autosize": true,
+                        "symbol": "NSE:NIFTY",
+                        "interval": "D",
+                        "timezone": "Asia/Kolkata",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "en",
+                        "backgroundColor": "rgba(10, 14, 26, 0.5)",
+                        "gridColor": "rgba(100, 255, 218, 0.05)",
+                        "allow_symbol_change": true,
+                        "calendar": false,
+                        "support_host": "https://www.tradingview.com"
+                    }
+                    </script>
                 </div>
             </div>
         </div>
@@ -83,119 +177,107 @@
     <!-- Features Section -->
     <section class="section">
         <div class="container">
-            <h2 class="text-center">Why Choose LearnTrading</h2>
+            <h2 class="text-center">Why Practice on LearnTrading?</h2>
             <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 3rem; color: #b8c5d6;">
-                Experience next-generation trading with cutting-edge technology, unparalleled security, and 24/7 support
+                The smartest way to learn trading — practice with virtual money using real market data
             </p>
             
             <div class="grid-3">
                 <div class="card fade-in-up delay-1">
-                    <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.8rem;">
-                        ⚡
-                    </div>
-                    <h4>Lightning-Fast Execution</h4>
-                    <p>Execute trades in milliseconds with our high-performance matching engine. Zero slippage on most orders and instant market access.</p>
+                    <div class="demo-feature-icon">🎓</div>
+                    <h4>Risk-Free Practice</h4>
+                    <p>Trade with ₹10 Lakh virtual cash. Make mistakes, learn strategies, and build confidence — all without risking real money.</p>
                 </div>
                 
                 <div class="card fade-in-up delay-2">
-                    <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.8rem;">
-                        🔒
-                    </div>
-                    <h4>Bank-Grade Security</h4>
-                    <p>Your assets are protected with military-grade encryption, cold storage, and multi-signature wallets. Insurance coverage up to $250M.</p>
+                    <div class="demo-feature-icon">📊</div>
+                    <h4>Live Market Graphs</h4>
+                    <p>Access real-time stock charts, candlestick patterns, and technical indicators powered by TradingView's professional charting engine.</p>
                 </div>
                 
                 <div class="card fade-in-up delay-3">
-                    <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.8rem;">
-                        📊
-                    </div>
-                    <h4>Advanced Analytics</h4>
-                    <p>Access professional charting tools, technical indicators, and AI-powered market insights to make informed trading decisions.</p>
+                    <div class="demo-feature-icon">💰</div>
+                    <h4>Virtual Portfolio</h4>
+                    <p>Build and track your virtual portfolio. See your P&L, analyze your trades, and learn what works before going live.</p>
                 </div>
                 
                 <div class="card fade-in-up delay-1">
-                    <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.8rem;">
-                        💰
-                    </div>
-                    <h4>Competitive Fees</h4>
-                    <p>Industry-leading low fees starting at 0.1%. Volume-based discounts and zero deposit/withdrawal fees for verified accounts.</p>
+                    <div class="demo-feature-icon">🧠</div>
+                    <h4>Learn By Doing</h4>
+                    <p>No boring theory — jump straight into simulated trading. Practice market orders, limit orders, and stop losses on real market conditions.</p>
                 </div>
                 
                 <div class="card fade-in-up delay-2">
-                    <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.8rem;">
-                        🌐
-                    </div>
-                    <h4>Global Markets</h4>
-                    <p>Trade 500+ cryptocurrencies, 50+ forex pairs, major stock indices, and commodities—all from a single unified platform.</p>
+                    <div class="demo-feature-icon">📈</div>
+                    <h4>Real Market Data</h4>
+                    <p>Trade on live prices from NSE, BSE, crypto exchanges, and global forex markets. Experience real market volatility and trends.</p>
                 </div>
                 
                 <div class="card fade-in-up delay-3">
-                    <div style="width: 60px; height: 60px; background: var(--gradient-primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; font-size: 1.8rem;">
-                        🎯
-                    </div>
-                    <h4>24/7 Support</h4>
-                    <p>Expert support team available around the clock via live chat, email, and phone. Average response time under 2 minutes.</p>
+                    <div class="demo-feature-icon">🏆</div>
+                    <h4>Track Your Progress</h4>
+                    <p>Detailed trade history, performance analytics, and win rate tracking. See yourself improve as you practice more.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Trading Plans Section -->
+    <!-- Demo Account Tiers -->
     <section class="section" style="background: rgba(100, 255, 218, 0.03);">
         <div class="container">
-            <h2 class="text-center">Investment Plans</h2>
+            <h2 class="text-center">Demo Account Plans</h2>
             <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 3rem; color: #b8c5d6;">
-                Choose a plan that fits your trading goals. All plans include full platform access and premium features.
+                All plans are FREE. Choose your starting virtual cash and features. No credit card required.
             </p>
             
             <div class="grid-3">
                 <div class="card">
-                    <h3>Starter</h3>
-                    <p style="color: #b8c5d6; margin-bottom: 2rem;">Perfect for beginners</p>
-                    <div class="stat-number" style="font-size: 2.5rem; margin-bottom: 1rem;">$500</div>
-                    <p style="font-size: 0.9rem; color: #b8c5d6; margin-bottom: 2rem;">Minimum deposit</p>
-                    <ul style="list-style: none; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Basic trading tools</li>
-                        <li style="margin-bottom: 0.5rem;">✓ 10+ markets access</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Email support</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Mobile app access</li>
-                        <li style="margin-bottom: 0.5rem;">✓ 0.2% trading fee</li>
+                    <h3>Beginner</h3>
+                    <p style="color: #b8c5d6; margin-bottom: 2rem;">Perfect for first-time traders</p>
+                    <div class="stat-number" style="font-size: 2.5rem; margin-bottom: 1rem;">₹10L</div>
+                    <p style="font-size: 0.9rem; color: #b8c5d6; margin-bottom: 2rem;">Virtual demo cash</p>
+                    <ul class="tier-feature-list">
+                        <li>Live stock market charts</li>
+                        <li>NSE & BSE stocks</li>
+                        <li>Basic order types</li>
+                        <li>Portfolio tracking</li>
+                        <li>Trade history</li>
                     </ul>
-                    <button class="btn btn-secondary" style="width: 100%;">Get Started</button>
+                    <a href="dashboard.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Start Free</a>
                 </div>
                 
-                <div class="card" style="border: 2px solid var(--neon-cyan); transform: scale(1.05);">
-                    <div class="badge badge-success" style="margin-bottom: 1rem;">Most Popular</div>
-                    <h3>Professional</h3>
-                    <p style="color: #b8c5d6; margin-bottom: 2rem;">For serious traders</p>
-                    <div class="stat-number" style="font-size: 2.5rem; margin-bottom: 1rem;">$5,000</div>
-                    <p style="font-size: 0.9rem; color: #b8c5d6; margin-bottom: 2rem;">Minimum deposit</p>
-                    <ul style="list-style: none; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Advanced trading tools</li>
-                        <li style="margin-bottom: 0.5rem;">✓ 100+ markets access</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Priority support</li>
-                        <li style="margin-bottom: 0.5rem;">✓ API access</li>
-                        <li style="margin-bottom: 0.5rem;">✓ 0.1% trading fee</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Advanced analytics</li>
+                <div class="card tier-highlight">
+                    <div class="badge badge-success" style="margin-bottom: 1rem;">Recommended</div>
+                    <h3>Advanced</h3>
+                    <p style="color: #b8c5d6; margin-bottom: 2rem;">For serious learners</p>
+                    <div class="stat-number" style="font-size: 2.5rem; margin-bottom: 1rem;">₹50L</div>
+                    <p style="font-size: 0.9rem; color: #b8c5d6; margin-bottom: 2rem;">Virtual demo cash</p>
+                    <ul class="tier-feature-list">
+                        <li>Everything in Beginner</li>
+                        <li>Crypto & forex markets</li>
+                        <li>Advanced chart tools</li>
+                        <li>Stop loss & limit orders</li>
+                        <li>Performance analytics</li>
+                        <li>Technical indicators</li>
                     </ul>
-                    <button class="btn btn-primary" style="width: 100%;">Get Started</button>
+                    <a href="dashboard.html" class="btn btn-primary" style="width: 100%; text-align: center;">Start Free</a>
                 </div>
                 
                 <div class="card">
-                    <h3>Enterprise</h3>
-                    <p style="color: #b8c5d6; margin-bottom: 2rem;">For institutions</p>
-                    <div class="stat-number" style="font-size: 2.5rem; margin-bottom: 1rem;">$50K+</div>
-                    <p style="font-size: 0.9rem; color: #b8c5d6; margin-bottom: 2rem;">Minimum deposit</p>
-                    <ul style="list-style: none; margin-bottom: 2rem;">
-                        <li style="margin-bottom: 0.5rem;">✓ Full platform access</li>
-                        <li style="margin-bottom: 0.5rem;">✓ All markets</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Dedicated account manager</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Custom integrations</li>
-                        <li style="margin-bottom: 0.5rem;">✓ 0.05% trading fee</li>
-                        <li style="margin-bottom: 0.5rem;">✓ Premium features</li>
-                        <li style="margin-bottom: 0.5rem;">✓ White-label options</li>
+                    <h3>Pro Simulator</h3>
+                    <p style="color: #b8c5d6; margin-bottom: 2rem;">Full market simulation</p>
+                    <div class="stat-number" style="font-size: 2.5rem; margin-bottom: 1rem;">₹1Cr</div>
+                    <p style="font-size: 0.9rem; color: #b8c5d6; margin-bottom: 2rem;">Virtual demo cash</p>
+                    <ul class="tier-feature-list">
+                        <li>Everything in Advanced</li>
+                        <li>All global markets</li>
+                        <li>Commodities & indices</li>
+                        <li>Margin trading simulation</li>
+                        <li>AI market insights</li>
+                        <li>Leaderboard competitions</li>
+                        <li>Export trade reports</li>
                     </ul>
-                    <button class="btn btn-secondary" style="width: 100%;">Contact Sales</button>
+                    <a href="dashboard.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Start Free</a>
                 </div>
             </div>
         </div>
@@ -204,26 +286,26 @@
     <!-- How It Works -->
     <section class="section">
         <div class="container">
-            <h2 class="text-center">How It Works</h2>
+            <h2 class="text-center">How Demo Trading Works</h2>
             <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 3rem; color: #b8c5d6;">
-                Start trading in just 3 simple steps
+                Start practicing in 3 simple steps — it's completely free
             </p>
             
             <div class="grid-3">
                 <div class="text-center">
                     <div class="stat-number" style="font-size: 4rem; opacity: 0.3;">01</div>
-                    <h4>Create Account</h4>
-                    <p>Sign up in under 2 minutes. Verify your identity with our secure KYC process for full account access.</p>
+                    <h4>Create Free Account</h4>
+                    <p>Sign up instantly and receive ₹10 Lakh in virtual demo cash. No credit card, no KYC, no real money involved.</p>
                 </div>
                 <div class="text-center">
                     <div class="stat-number" style="font-size: 4rem; opacity: 0.3;">02</div>
-                    <h4>Fund Your Account</h4>
-                    <p>Deposit funds via bank transfer, credit card, or cryptocurrency. Instant deposits for crypto, 1-3 days for fiat.</p>
+                    <h4>Explore Live Markets</h4>
+                    <p>Browse real-time stock charts, study market trends, and pick the stocks you want to practice trading on.</p>
                 </div>
                 <div class="text-center">
                     <div class="stat-number" style="font-size: 4rem; opacity: 0.3;">03</div>
-                    <h4>Start Trading</h4>
-                    <p>Access your dashboard, analyze markets, and execute your first trade. Built-in tutorials guide you every step.</p>
+                    <h4>Practice Trading</h4>
+                    <p>Buy and sell stocks with your demo money. Track your portfolio, analyze your P&L, and learn from every trade.</p>
                 </div>
             </div>
         </div>
@@ -232,37 +314,37 @@
     <!-- Testimonials -->
     <section class="section" style="background: rgba(100, 255, 218, 0.03);">
         <div class="container">
-            <h2 class="text-center">What Our Traders Say</h2>
+            <h2 class="text-center">What Our Learners Say</h2>
             <div class="grid-3" style="margin-top: 3rem;">
                 <div class="card">
-                    <p style="font-style: italic; margin-bottom: 1.5rem;">"LearnTrading transformed my approach to investing. The analytics tools are absolutely top-tier, and execution speed is unmatched. I've grown my portfolio by 340% in just 8 months."</p>
+                    <p style="font-style: italic; margin-bottom: 1.5rem;">"I was always scared to invest in stocks. LearnTrading's demo platform let me practice for 3 months with virtual money before I felt confident enough to start real trading. Best learning tool ever!"</p>
                     <div class="flex" style="align-items: center; gap: 1rem;">
-                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 50%;"></div>
+                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">👨‍💻</div>
                         <div>
-                            <strong>Sarah Mitchell</strong>
-                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">Professional Trader, NYC</p>
+                            <strong>Rahul Sharma</strong>
+                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">Computer Science Student, Delhi</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="card">
-                    <p style="font-style: italic; margin-bottom: 1.5rem;">"As a day trader, milliseconds matter. LearnTrading's execution engine is lightning fast. Combined with their low fees, I've saved thousands while scaling my trading volume."</p>
+                    <p style="font-style: italic; margin-bottom: 1.5rem;">"The live charts are amazing! I can see real stock prices and practice my technical analysis strategies without any pressure. I've learned more here in 2 weeks than in months of reading books."</p>
                     <div class="flex" style="align-items: center; gap: 1rem;">
-                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 50%;"></div>
+                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">👩‍🎓</div>
                         <div>
-                            <strong>Marcus Rodriguez</strong>
-                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">Day Trader, Miami</p>
+                            <strong>Priya Patel</strong>
+                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">MBA Student, Mumbai</p>
                         </div>
                     </div>
                 </div>
                 
                 <div class="card">
-                    <p style="font-style: italic; margin-bottom: 1.5rem;">"The security features give me complete peace of mind. Multi-signature wallets, insurance coverage, and 24/7 monitoring mean I can focus on trading, not worrying about my assets."</p>
+                    <p style="font-style: italic; margin-bottom: 1.5rem;">"I've made every mistake in the book — but with demo money! Now I know what works and what doesn't. The virtual portfolio tracking helped me understand risk management before going live."</p>
                     <div class="flex" style="align-items: center; gap: 1rem;">
-                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 50%;"></div>
+                        <div style="width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">👨‍💼</div>
                         <div>
-                            <strong>Jennifer Park</strong>
-                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">Institutional Investor, Singapore</p>
+                            <strong>Arun Krishnan</strong>
+                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">Software Engineer, Bangalore</p>
                         </div>
                     </div>
                 </div>
@@ -274,13 +356,13 @@
     <section class="section">
         <div class="container">
             <div class="card" style="background: var(--gradient-primary); text-align: center; padding: 4rem 2rem;">
-                <h2 style="color: #fff; font-size: 2.8rem;">Ready to Start Trading?</h2>
+                <h2 style="color: #fff; font-size: 2.8rem;">Start Practicing Today — It's 100% Free</h2>
                 <p style="font-size: 1.2rem; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
-                    Join 150,000+ traders worldwide and experience the future of trading
+                    Get ₹10 Lakh virtual cash and start learning stock market trading with zero risk
                 </p>
                 <div class="flex flex-center gap-md">
-                    <a href="dashboard.html" class="btn" style="background: #fff; color: var(--primary-bg); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">Create Free Account</a>
-                    <a href="contact.html" class="btn btn-secondary" style="border-color: #fff; color: #fff;">Contact Sales</a>
+                    <a href="dashboard.html" class="btn" style="background: #fff; color: var(--primary-bg); box-shadow: 0 10px 30px rgba(0,0,0,0.3);">Open Demo Account</a>
+                    <a href="contact.html" class="btn btn-secondary" style="border-color: #fff; color: #fff;">Ask Questions</a>
                 </div>
             </div>
         </div>
@@ -293,33 +375,29 @@
                 <div class="footer-section">
                     <h4>LearnTrading</h4>
                     <p style="color: #b8c5d6; margin-bottom: 1rem;">
-                        Professional trading platform built for modern traders. Secure, fast, and reliable.
+                        Free demo trading platform for learning stock market trading. Practice with virtual money, zero real risk.
                     </p>
-                    <div class="flex gap-sm" style="margin-top: 1rem;">
-                        <a href="#" style="width: 40px; height: 40px; background: rgba(100, 255, 218, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;">X</a>
-                        <a href="#" style="width: 40px; height: 40px; background: rgba(100, 255, 218, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;">in</a>
-                        <a href="#" style="width: 40px; height: 40px; background: rgba(100, 255, 218, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center;">f</a>
-                    </div>
+                    <div class="demo-badge" style="margin-top: 0.5rem;">📚 Educational Platform</div>
                 </div>
                 
                 <div class="footer-section">
                     <h4>Platform</h4>
                     <ul class="footer-links">
-                        <li><a href="dashboard.html">Trading Dashboard</a></li>
-                        <li><a href="#">Markets</a></li>
-                        <li><a href="#">Trading Tools</a></li>
-                        <li><a href="#">API Documentation</a></li>
-                        <li><a href="#">Mobile App</a></li>
+                        <li><a href="dashboard.html">Demo Dashboard</a></li>
+                        <li><a href="#">Live Charts</a></li>
+                        <li><a href="#">Virtual Portfolio</a></li>
+                        <li><a href="#">Market Screener</a></li>
+                        <li><a href="#">Trading Quizzes</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h4>Company</h4>
+                    <h4>Learn</h4>
                     <ul class="footer-links">
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                         <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Trading Guides</a></li>
                         <li><a href="#">Blog</a></li>
                     </ul>
                 </div>
@@ -330,14 +408,13 @@
                         <li><a href="terms.html">Terms of Service</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="#">Risk Disclosure</a></li>
-                        <li><a href="#">Regulatory</a></li>
                         <li><a href="#">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2026 LearnTrading.org. All rights reserved. Trading involves risk and may not be suitable for all investors.</p>
+                <p>&copy; 2026 LearnTrading.org. All rights reserved. This is a demo trading platform for educational purposes only. No real money is involved.</p>
             </div>
         </div>
     </footer>
