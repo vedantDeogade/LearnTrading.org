@@ -817,6 +817,255 @@ a:hover {
 }
 
 /* ===================================
+   DEMO PLATFORM STYLES
+   =================================== */
+
+/* Demo Account Banner */
+.demo-banner {
+    background: linear-gradient(135deg, rgba(255, 183, 3, 0.15) 0%, rgba(251, 133, 0, 0.15) 100%);
+    border: 1px solid rgba(255, 183, 3, 0.4);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: var(--spacing-md);
+    animation: demoPulse 3s ease-in-out infinite;
+}
+
+.demo-banner span {
+    color: var(--neon-purple);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+@keyframes demoPulse {
+    0%, 100% { border-color: rgba(255, 183, 3, 0.4); }
+    50% { border-color: rgba(255, 183, 3, 0.8); box-shadow: 0 0 20px rgba(255, 183, 3, 0.15); }
+}
+
+/* Demo Badge Pill */
+.demo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: linear-gradient(135deg, rgba(255, 183, 3, 0.2) 0%, rgba(251, 133, 0, 0.2) 100%);
+    border: 1px solid var(--neon-purple);
+    color: var(--neon-purple);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: var(--font-display);
+}
+
+/* Virtual Balance Glow */
+.virtual-balance {
+    position: relative;
+}
+
+.virtual-balance::after {
+    content: 'VIRTUAL';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--neon-purple);
+    color: var(--primary-bg);
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    font-family: var(--font-display);
+}
+
+/* Ticker Tape Container */
+.ticker-tape-container {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: rgba(3, 12, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    overflow: hidden;
+}
+
+/* TradingView Widget Containers */
+.tradingview-widget-container {
+    width: 100%;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.chart-widget-container {
+    background: rgba(10, 14, 26, 0.5);
+    border-radius: var(--border-radius);
+    padding: 0;
+    overflow: hidden;
+    min-height: 450px;
+}
+
+.chart-widget-container .tradingview-widget-container {
+    min-height: 450px;
+}
+
+/* Live Market Preview Card */
+.live-market-preview {
+    background: rgba(10, 25, 47, 0.5);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(100, 255, 218, 0.15);
+    border-radius: var(--border-radius-lg);
+    padding: 0;
+    overflow: hidden;
+}
+
+.live-market-preview h3 {
+    padding: 1.5rem 1.5rem 0;
+    margin-bottom: 0;
+}
+
+/* Market Stats Mini Cards */
+.market-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    padding: 1rem;
+}
+
+.market-stat-card {
+    background: rgba(0, 180, 216, 0.05);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    transition: var(--transition-fast);
+}
+
+.market-stat-card:hover {
+    border-color: var(--neon-cyan);
+    background: rgba(0, 180, 216, 0.1);
+}
+
+.market-stat-card .symbol {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+}
+
+.market-stat-card .price {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--neon-cyan);
+    margin: 0.2rem 0;
+}
+
+.market-stat-card .change {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.market-stat-card .change.positive { color: var(--electric-green); }
+.market-stat-card .change.negative { color: var(--danger-red); }
+
+/* Demo Feature Cards */
+.demo-feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient-primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+/* Tier Cards */
+.tier-highlight {
+    border: 2px solid var(--neon-cyan);
+    transform: scale(1.05);
+}
+
+.tier-feature-list {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.tier-feature-list li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.tier-feature-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--electric-green);
+    font-weight: 700;
+}
+
+/* Dashboard with ticker offset */
+.dashboard-with-ticker {
+    margin-top: 120px !important;
+}
+
+/* Trade notification toast */
+.trade-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--electric-green);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+    color: #fff;
+    font-family: var(--font-display);
+    z-index: 10000;
+    animation: slideInToast 0.5s ease-out, fadeOutToast 0.5s ease-in 2.5s forwards;
+    box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+    max-width: 350px;
+}
+
+.trade-toast.error {
+    border-color: var(--danger-red);
+    box-shadow: 0 0 30px rgba(239, 71, 111, 0.3);
+}
+
+@keyframes slideInToast {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOutToast {
+    from { opacity: 1; }
+    to { opacity: 0; pointer-events: none; }
+}
+
+/* Hero section with ticker offset */
+.hero-section-with-ticker {
+    padding-top: 120px;
+}
+
+/* Screener widget styles */
+.screener-widget {
+    background: rgba(10, 14, 26, 0.5);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    min-height: 400px;
+}
+
+/* ===================================
    LOADING STATES
    =================================== */
 .spinner {
