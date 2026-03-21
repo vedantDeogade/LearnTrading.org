@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Dashboard - LearnTrading.org</title>
+    <title>Demo Trading Dashboard - LearnTrading.org</title>
+    <meta name="description" content="Practice stock market trading with virtual money. Live charts, demo buy/sell, and portfolio tracking.">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -19,25 +19,59 @@
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="#">Markets</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="#">History</a></li>
-                <li><a href="index.html" class="btn btn-secondary" style="padding: 0.7rem 1.5rem;">Logout</a></li>
+                <li><a href="#markets-section">Markets</a></li>
+                <li><a href="#portfolio-section">Portfolio</a></li>
+                <li><a href="#history-section">History</a></li>
+                <li><a href="index.html" class="btn btn-secondary" style="padding: 0.7rem 1.5rem;">Home</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- Live Ticker Tape -->
+    <div class="ticker-tape-container">
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {"proName": "NSE:NIFTY", "title": "NIFTY 50"},
+                    {"proName": "BSE:SENSEX", "title": "SENSEX"},
+                    {"proName": "NSE:RELIANCE", "title": "Reliance"},
+                    {"proName": "NSE:TCS", "title": "TCS"},
+                    {"proName": "NSE:INFY", "title": "Infosys"},
+                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
+                    {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
+                    {"proName": "FX_IDC:EURUSD", "title": "EUR/USD"},
+                    {"proName": "NSE:HDFCBANK", "title": "HDFC Bank"},
+                    {"proName": "NSE:ICICIBANK", "title": "ICICI Bank"}
+                ],
+                "showSymbolLogo": true,
+                "isTransparent": true,
+                "displayMode": "adaptive",
+                "colorTheme": "dark",
+                "locale": "en"
+            }
+            </script>
+        </div>
+    </div>
+
     <!-- Dashboard Header -->
-    <div class="dashboard-header" style="margin-top: 80px;">
+    <div class="dashboard-header dashboard-with-ticker">
         <div class="container">
+            <!-- Demo Banner -->
+            <div class="demo-banner">
+                <span>🎓 Demo Trading Account — All trades use virtual money. No real funds involved.</span>
+            </div>
             <div class="flex-between" style="align-items: center;">
                 <div>
-                    <h2 style="margin: 0;">Welcome Back, Trader</h2>
-                    <p style="margin: 0; color: #b8c5d6;">Last login: Today at 09:24 AM</p>
+                    <h2 style="margin: 0; display: flex; align-items: center; gap: 1rem;">
+                        Welcome, Trader 
+                        <span class="demo-badge">DEMO MODE</span>
+                    </h2>
+                    <p style="margin: 0; color: #b8c5d6;">Practice trading with virtual money — zero real risk</p>
                 </div>
                 <div class="flex gap-sm">
-                    <button class="btn btn-success">Deposit</button>
-                    <button class="btn btn-secondary">Withdraw</button>
+                    <button class="btn btn-success" onclick="resetAccount()">Reset Demo Account</button>
                 </div>
             </div>
         </div>
@@ -49,293 +83,224 @@
             <!-- Balance Cards -->
             <div class="grid-4">
                 <div class="card balance-card">
-                    <p style="opacity: 0.9; margin-bottom: 0.5rem;">Total Balance</p>
-                    <div class="balance-amount">$47,892.50</div>
-                    <p class="profit-positive" style="font-weight: 600; font-size: 1.1rem;">
-                        +$2,341.20 (+5.14%) Today
+                    <p style="opacity: 0.9; margin-bottom: 0.5rem;">Virtual Balance</p>
+                    <div class="balance-amount virtual-balance" id="total-balance">₹10,00,000</div>
+                    <p id="total-pnl" class="profit-positive" style="font-weight: 600; font-size: 1.1rem;">
+                        ₹0.00 (0.00%) P&L
                     </p>
                 </div>
                 
                 <div class="card">
-                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Available Balance</p>
-                    <h3 style="font-size: 2rem; margin: 0.5rem 0;">$32,450.00</h3>
+                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Available Cash</p>
+                    <h3 id="available-cash" style="font-size: 2rem; margin: 0.5rem 0;">₹10,00,000</h3>
                     <span class="badge badge-success">Ready to Trade</span>
                 </div>
                 
                 <div class="card">
-                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">In Open Positions</p>
-                    <h3 style="font-size: 2rem; margin: 0.5rem 0;">$15,442.50</h3>
-                    <span class="badge badge-info">7 Active Trades</span>
+                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">In Positions</p>
+                    <h3 id="in-positions" style="font-size: 2rem; margin: 0.5rem 0;">₹0.00</h3>
+                    <span class="badge badge-info" id="active-trades-count">0 Active Trades</span>
                 </div>
                 
                 <div class="card">
-                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Total P&L (30d)</p>
-                    <h3 class="profit-positive" style="font-size: 2rem; margin: 0.5rem 0;">+$8,234.90</h3>
-                    <span class="badge badge-success">+21.3%</span>
+                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Total Trades Made</p>
+                    <h3 id="total-trades" style="font-size: 2rem; margin: 0.5rem 0;">0</h3>
+                    <span class="badge badge-info">Lifetime</span>
                 </div>
             </div>
 
             <!-- Main Trading Interface -->
-            <div class="grid-2" style="margin-top: 2rem; align-items: start;">
+            <div class="grid-2" style="margin-top: 2rem; align-items: start;" id="markets-section">
                 <!-- Live Chart -->
                 <div class="card" style="grid-row: span 2;">
                     <div class="flex-between" style="margin-bottom: 1rem;">
-                        <h3 style="margin: 0;">BTC/USD</h3>
-                        <div class="flex gap-sm">
-                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(0,217,255,0.1);">1H</button>
-                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: var(--gradient-primary);">4H</button>
-                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(0,217,255,0.1);">1D</button>
-                            <button class="btn" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(0,217,255,0.1);">1W</button>
-                        </div>
+                        <h3 style="margin: 0;">Live Market Chart</h3>
+                        <div class="demo-badge">📊 Real-Time Data</div>
                     </div>
                     
-                    <div class="flex gap-md" style="margin-bottom: 1.5rem;">
-                        <div>
-                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">Price</p>
-                            <h3 style="margin: 0.2rem 0; color: var(--electric-green);">$68,742.30</h3>
+                    <div class="chart-widget-container" style="height: 500px;">
+                        <div class="tradingview-widget-container" style="height: 100%;">
+                            <div id="tradingview-dashboard-chart" style="height: 100%;"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                            {
+                                "autosize": true,
+                                "symbol": "NSE:RELIANCE",
+                                "interval": "15",
+                                "timezone": "Asia/Kolkata",
+                                "theme": "dark",
+                                "style": "1",
+                                "locale": "en",
+                                "backgroundColor": "rgba(10, 14, 26, 0.5)",
+                                "gridColor": "rgba(100, 255, 218, 0.05)",
+                                "allow_symbol_change": true,
+                                "calendar": false,
+                                "studies": ["RSI@tv-basicstudies", "MASimple@tv-basicstudies"],
+                                "support_host": "https://www.tradingview.com"
+                            }
+                            </script>
                         </div>
-                        <div>
-                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">24h Change</p>
-                            <h4 class="profit-positive" style="margin: 0.2rem 0;">+$1,234.50 (+1.83%)</h4>
-                        </div>
-                        <div>
-                            <p style="font-size: 0.9rem; color: #b8c5d6; margin: 0;">24h Volume</p>
-                            <h4 style="margin: 0.2rem 0; color: #fff;">$28.4B</h4>
-                        </div>
-                    </div>
-                    
-                    <div class="chart-container">
-                        <canvas id="tradingChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Quick Trade Panel -->
+                <!-- Quick Demo Trade Panel -->
                 <div class="card">
-                    <h3>Quick Trade</h3>
+                    <h3>Demo Trade</h3>
+                    <p style="font-size: 0.85rem; color: #b8c5d6; margin-bottom: 1rem;">
+                        Practice buying and selling with virtual money
+                    </p>
                     <div class="flex gap-sm" style="margin-bottom: 1.5rem;">
-                        <button class="btn btn-success" style="flex: 1;" onclick="selectTradeType('buy')">BUY</button>
-                        <button class="btn btn-danger" style="flex: 1;" onclick="selectTradeType('sell')">SELL</button>
+                        <button class="btn btn-success" id="btn-buy" style="flex: 1;" onclick="selectTradeType('buy')">BUY</button>
+                        <button class="btn btn-danger" id="btn-sell" style="flex: 1;" onclick="selectTradeType('sell')">SELL</button>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Amount (USD)</label>
-                        <input type="number" class="form-input" placeholder="0.00" value="1000">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Asset</label>
-                        <select class="form-select">
-                            <option>BTC - Bitcoin</option>
-                            <option>ETH - Ethereum</option>
-                            <option>EUR/USD</option>
-                            <option>AAPL - Apple Inc.</option>
-                            <option>GOLD</option>
+                        <label class="form-label">Stock / Asset</label>
+                        <select class="form-select" id="trade-asset" onchange="updateTradePreview()">
+                            <option value="RELIANCE" data-price="2890.50">RELIANCE - Reliance Industries</option>
+                            <option value="TCS" data-price="3950.75">TCS - Tata Consultancy Services</option>
+                            <option value="INFY" data-price="1685.30">INFY - Infosys</option>
+                            <option value="HDFCBANK" data-price="1620.45">HDFCBANK - HDFC Bank</option>
+                            <option value="ICICIBANK" data-price="1245.80">ICICIBANK - ICICI Bank</option>
+                            <option value="WIPRO" data-price="542.15">WIPRO - Wipro</option>
+                            <option value="SBIN" data-price="785.60">SBIN - State Bank of India</option>
+                            <option value="TATAMOTORS" data-price="945.30">TATAMOTORS - Tata Motors</option>
+                            <option value="ADANIENT" data-price="2340.90">ADANIENT - Adani Enterprises</option>
+                            <option value="ITC" data-price="465.20">ITC - ITC Limited</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Order Type</label>
-                        <select class="form-select">
-                            <option>Market Order</option>
-                            <option>Limit Order</option>
-                            <option>Stop Loss</option>
-                        </select>
+                        <label class="form-label">Quantity (Shares)</label>
+                        <input type="number" class="form-input" id="trade-quantity" placeholder="Enter quantity" value="10" min="1" onchange="updateTradePreview()">
                     </div>
                     
                     <div class="flex gap-sm" style="background: rgba(0,217,255,0.05); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
                         <div style="flex: 1;">
-                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Est. Fee</p>
-                            <p style="font-size: 1.1rem; margin: 0; font-weight: 600;">$1.00</p>
+                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Price per share</p>
+                            <p id="trade-price-display" style="font-size: 1.1rem; margin: 0; font-weight: 600;">₹2,890.50</p>
                         </div>
                         <div style="flex: 1;">
-                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">You'll Get</p>
-                            <p style="font-size: 1.1rem; margin: 0; font-weight: 600;">0.01453 BTC</p>
+                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Total Cost</p>
+                            <p id="trade-total-display" style="font-size: 1.1rem; margin: 0; font-weight: 600;">₹28,905.00</p>
                         </div>
                     </div>
                     
-                    <button class="btn btn-primary" style="width: 100%; font-size: 1.1rem;">Execute Trade</button>
+                    <button class="btn btn-primary" id="execute-trade-btn" style="width: 100%; font-size: 1.1rem;" onclick="executeDemoTrade()">
+                        Buy with Virtual Money
+                    </button>
+                    <p style="font-size: 0.75rem; color: #b8c5d6; text-align: center; margin-top: 0.5rem;">
+                        ⚠️ This is a demo trade. No real money is used.
+                    </p>
                 </div>
 
-                <!-- Market Watchlist -->
+                <!-- Market Overview Widget -->
                 <div class="card">
-                    <h3>Watchlist</h3>
-                    <ul class="asset-list">
-                        <li class="asset-item">
-                            <div class="flex" style="align-items: center; gap: 1rem;">
-                                <div class="asset-icon">₿</div>
-                                <div>
-                                    <strong>BTC/USD</strong>
-                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Bitcoin</p>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>$68,742.30</strong>
-                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+1.83%</p>
-                            </div>
-                        </li>
-                        
-                        <li class="asset-item">
-                            <div class="flex" style="align-items: center; gap: 1rem;">
-                                <div class="asset-icon">Ξ</div>
-                                <div>
-                                    <strong>ETH/USD</strong>
-                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Ethereum</p>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>$3,245.80</strong>
-                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+2.14%</p>
-                            </div>
-                        </li>
-                        
-                        <li class="asset-item">
-                            <div class="flex" style="align-items: center; gap: 1rem;">
-                                <div class="asset-icon">€</div>
-                                <div>
-                                    <strong>EUR/USD</strong>
-                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Forex</p>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>1.0842</strong>
-                                <p class="profit-negative" style="font-size: 0.85rem; margin: 0;">-0.23%</p>
-                            </div>
-                        </li>
-                        
-                        <li class="asset-item">
-                            <div class="flex" style="align-items: center; gap: 1rem;">
-                                <div class="asset-icon">🍎</div>
-                                <div>
-                                    <strong>AAPL</strong>
-                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Apple Inc.</p>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>$178.24</strong>
-                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+0.89%</p>
-                            </div>
-                        </li>
-                        
-                        <li class="asset-item">
-                            <div class="flex" style="align-items: center; gap: 1rem;">
-                                <div class="asset-icon">🥇</div>
-                                <div>
-                                    <strong>GOLD</strong>
-                                    <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Gold Spot</p>
-                                </div>
-                            </div>
-                            <div style="text-align: right;">
-                                <strong>$2,034.50</strong>
-                                <p class="profit-positive" style="font-size: 0.85rem; margin: 0;">+1.12%</p>
-                            </div>
-                        </li>
-                    </ul>
+                    <h3>Market Overview</h3>
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                        {
+                            "colorTheme": "dark",
+                            "dateRange": "1D",
+                            "showChart": true,
+                            "locale": "en",
+                            "width": "100%",
+                            "height": "400",
+                            "largeChartUrl": "",
+                            "isTransparent": true,
+                            "showSymbolLogo": true,
+                            "showFloatingTooltip": true,
+                            "tabs": [
+                                {
+                                    "title": "Indian Stocks",
+                                    "symbols": [
+                                        {"s": "NSE:RELIANCE", "d": "Reliance"},
+                                        {"s": "NSE:TCS", "d": "TCS"},
+                                        {"s": "NSE:INFY", "d": "Infosys"},
+                                        {"s": "NSE:HDFCBANK", "d": "HDFC Bank"},
+                                        {"s": "NSE:ICICIBANK", "d": "ICICI Bank"}
+                                    ],
+                                    "originalTitle": "Indian Stocks"
+                                },
+                                {
+                                    "title": "Crypto",
+                                    "symbols": [
+                                        {"s": "BITSTAMP:BTCUSD", "d": "Bitcoin"},
+                                        {"s": "BITSTAMP:ETHUSD", "d": "Ethereum"},
+                                        {"s": "BINANCE:SOLUSDT", "d": "Solana"},
+                                        {"s": "BINANCE:ADAUSDT", "d": "Cardano"}
+                                    ],
+                                    "originalTitle": "Crypto"
+                                },
+                                {
+                                    "title": "Indices",
+                                    "symbols": [
+                                        {"s": "NSE:NIFTY", "d": "Nifty 50"},
+                                        {"s": "BSE:SENSEX", "d": "Sensex"},
+                                        {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
+                                        {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq"}
+                                    ],
+                                    "originalTitle": "Indices"
+                                }
+                            ]
+                        }
+                        </script>
+                    </div>
                 </div>
             </div>
 
-            <!-- Open Positions -->
-            <div class="card" style="margin-top: 2rem;">
-                <h3>Open Positions</h3>
-                <table class="data-table">
+            <!-- Open Positions (Portfolio) -->
+            <div class="card" style="margin-top: 2rem;" id="portfolio-section">
+                <div class="flex-between" style="margin-bottom: 1rem;">
+                    <h3 style="margin: 0;">Your Virtual Portfolio</h3>
+                    <span class="demo-badge">DEMO POSITIONS</span>
+                </div>
+                <div id="positions-empty" style="text-align: center; padding: 3rem; color: #b8c5d6;">
+                    <p style="font-size: 2rem; margin-bottom: 0.5rem;">📊</p>
+                    <p style="font-size: 1.1rem;">No open positions yet</p>
+                    <p>Use the Demo Trade panel above to buy your first stock with virtual money!</p>
+                </div>
+                <table class="data-table" id="positions-table" style="display: none;">
                     <thead>
                         <tr>
                             <th>Asset</th>
                             <th>Type</th>
-                            <th>Amount</th>
-                            <th>Entry Price</th>
+                            <th>Qty</th>
+                            <th>Avg. Price</th>
                             <th>Current Price</th>
                             <th>P&L</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>BTC/USD</strong></td>
-                            <td><span class="badge badge-success">BUY</span></td>
-                            <td>0.25 BTC</td>
-                            <td>$65,200.00</td>
-                            <td>$68,742.30</td>
-                            <td class="profit-positive"><strong>+$885.58 (+5.43%)</strong></td>
-                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>ETH/USD</strong></td>
-                            <td><span class="badge badge-success">BUY</span></td>
-                            <td>5.0 ETH</td>
-                            <td>$3,100.00</td>
-                            <td>$3,245.80</td>
-                            <td class="profit-positive"><strong>+$729.00 (+4.71%)</strong></td>
-                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>EUR/USD</strong></td>
-                            <td><span class="badge badge-danger">SELL</span></td>
-                            <td>$10,000</td>
-                            <td>1.0865</td>
-                            <td>1.0842</td>
-                            <td class="profit-positive"><strong>+$21.19 (+0.21%)</strong></td>
-                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
-                        </tr>
-                        <tr>
-                            <td><strong>AAPL</strong></td>
-                            <td><span class="badge badge-success">BUY</span></td>
-                            <td>50 shares</td>
-                            <td>$175.50</td>
-                            <td>$178.24</td>
-                            <td class="profit-positive"><strong>+$137.00 (+1.56%)</strong></td>
-                            <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;">Close</button></td>
-                        </tr>
+                    <tbody id="positions-body">
                     </tbody>
                 </table>
             </div>
 
-            <!-- Recent Transactions -->
-            <div class="card" style="margin-top: 2rem;">
-                <h3>Recent Transactions</h3>
-                <table class="data-table">
+            <!-- Trade History -->
+            <div class="card" style="margin-top: 2rem;" id="history-section">
+                <div class="flex-between" style="margin-bottom: 1rem;">
+                    <h3 style="margin: 0;">Trade History</h3>
+                    <span class="demo-badge">DEMO TRADES</span>
+                </div>
+                <div id="history-empty" style="text-align: center; padding: 3rem; color: #b8c5d6;">
+                    <p style="font-size: 2rem; margin-bottom: 0.5rem;">📋</p>
+                    <p style="font-size: 1.1rem;">No trades yet</p>
+                    <p>Your demo trade history will appear here once you start trading.</p>
+                </div>
+                <table class="data-table" id="history-table" style="display: none;">
                     <thead>
                         <tr>
                             <th>Date</th>
                             <th>Type</th>
                             <th>Asset</th>
-                            <th>Amount</th>
+                            <th>Qty</th>
                             <th>Price</th>
+                            <th>Total</th>
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>2026-03-14 09:24</td>
-                            <td>Buy</td>
-                            <td>BTC/USD</td>
-                            <td>0.05 BTC</td>
-                            <td>$68,500.00</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>2026-03-14 08:15</td>
-                            <td>Sell</td>
-                            <td>ETH/USD</td>
-                            <td>2.0 ETH</td>
-                            <td>$3,200.00</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>2026-03-13 22:30</td>
-                            <td>Buy</td>
-                            <td>AAPL</td>
-                            <td>50 shares</td>
-                            <td>$175.50</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
-                        <tr>
-                            <td>2026-03-13 18:45</td>
-                            <td>Deposit</td>
-                            <td>USD</td>
-                            <td>$10,000.00</td>
-                            <td>-</td>
-                            <td><span class="badge badge-success">Completed</span></td>
-                        </tr>
+                    <tbody id="history-body">
                     </tbody>
                 </table>
             </div>
@@ -343,91 +308,357 @@
     </section>
 
     <script>
+        // ====================================
+        // DEMO TRADING ENGINE (Virtual Money)
+        // ====================================
+        
+        const INITIAL_BALANCE = 1000000; // ₹10,00,000
+        let tradeType = 'buy';
+        
+        // Initialize or load account from localStorage
+        function getAccount() {
+            const saved = localStorage.getItem('learntrading_demo_account');
+            if (saved) {
+                return JSON.parse(saved);
+            }
+            return {
+                balance: INITIAL_BALANCE,
+                initialBalance: INITIAL_BALANCE,
+                positions: {},
+                history: [],
+                totalTrades: 0
+            };
+        }
+        
+        function saveAccount(account) {
+            localStorage.setItem('learntrading_demo_account', JSON.stringify(account));
+        }
+        
+        // Stock prices with simulated fluctuation
+        const stockPrices = {
+            'RELIANCE': { name: 'Reliance Industries', price: 2890.50 },
+            'TCS': { name: 'Tata Consultancy Services', price: 3950.75 },
+            'INFY': { name: 'Infosys', price: 1685.30 },
+            'HDFCBANK': { name: 'HDFC Bank', price: 1620.45 },
+            'ICICIBANK': { name: 'ICICI Bank', price: 1245.80 },
+            'WIPRO': { name: 'Wipro', price: 542.15 },
+            'SBIN': { name: 'State Bank of India', price: 785.60 },
+            'TATAMOTORS': { name: 'Tata Motors', price: 945.30 },
+            'ADANIENT': { name: 'Adani Enterprises', price: 2340.90 },
+            'ITC': { name: 'ITC Limited', price: 465.20 }
+        };
+        
+        // Simulate price fluctuation
+        function simulatePriceChange() {
+            for (let symbol in stockPrices) {
+                const change = (Math.random() - 0.48) * 0.02; // slight upward bias
+                stockPrices[symbol].price *= (1 + change);
+                stockPrices[symbol].price = Math.round(stockPrices[symbol].price * 100) / 100;
+            }
+            
+            // Update select option data-price attributes
+            const options = document.getElementById('trade-asset').options;
+            for (let i = 0; i < options.length; i++) {
+                const symbol = options[i].value;
+                if (stockPrices[symbol]) {
+                    options[i].setAttribute('data-price', stockPrices[symbol].price);
+                }
+            }
+            
+            updateTradePreview();
+            renderPositions();
+            updateDashboardStats();
+        }
+        
+        // Format currency
+        function formatINR(amount) {
+            const abs = Math.abs(amount);
+            const sign = amount < 0 ? '-' : '';
+            if (abs >= 10000000) {
+                return sign + '₹' + (abs / 10000000).toFixed(2) + ' Cr';
+            } else if (abs >= 100000) {
+                return sign + '₹' + (abs / 100000).toFixed(2) + ' L';
+            }
+            return sign + '₹' + abs.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        
+        // Select trade type
+        function selectTradeType(type) {
+            tradeType = type;
+            const buyBtn = document.getElementById('btn-buy');
+            const sellBtn = document.getElementById('btn-sell');
+            const executeBtn = document.getElementById('execute-trade-btn');
+            
+            if (type === 'buy') {
+                buyBtn.style.opacity = '1';
+                sellBtn.style.opacity = '0.5';
+                executeBtn.textContent = 'Buy with Virtual Money';
+                executeBtn.style.background = 'var(--gradient-success)';
+            } else {
+                buyBtn.style.opacity = '0.5';
+                sellBtn.style.opacity = '1';
+                executeBtn.textContent = 'Sell from Portfolio';
+                executeBtn.style.background = 'var(--gradient-danger)';
+            }
+        }
+        
+        // Update trade preview
+        function updateTradePreview() {
+            const assetSelect = document.getElementById('trade-asset');
+            const quantity = parseInt(document.getElementById('trade-quantity').value) || 0;
+            const selectedOption = assetSelect.options[assetSelect.selectedIndex];
+            const price = parseFloat(selectedOption.getAttribute('data-price'));
+            const total = price * quantity;
+            
+            document.getElementById('trade-price-display').textContent = formatINR(price);
+            document.getElementById('trade-total-display').textContent = formatINR(total);
+        }
+        
+        // Execute demo trade
+        function executeDemoTrade() {
+            const account = getAccount();
+            const assetSelect = document.getElementById('trade-asset');
+            const symbol = assetSelect.value;
+            const quantity = parseInt(document.getElementById('trade-quantity').value) || 0;
+            const price = stockPrices[symbol].price;
+            const total = price * quantity;
+            
+            if (quantity <= 0) {
+                showToast('Please enter a valid quantity', 'error');
+                return;
+            }
+            
+            if (tradeType === 'buy') {
+                if (total > account.balance) {
+                    showToast('Insufficient virtual funds! Available: ' + formatINR(account.balance), 'error');
+                    return;
+                }
+                
+                // Add to position
+                if (account.positions[symbol]) {
+                    const existing = account.positions[symbol];
+                    const totalQty = existing.quantity + quantity;
+                    const avgPrice = ((existing.avgPrice * existing.quantity) + (price * quantity)) / totalQty;
+                    account.positions[symbol] = {
+                        quantity: totalQty,
+                        avgPrice: Math.round(avgPrice * 100) / 100,
+                        name: stockPrices[symbol].name
+                    };
+                } else {
+                    account.positions[symbol] = {
+                        quantity: quantity,
+                        avgPrice: price,
+                        name: stockPrices[symbol].name
+                    };
+                }
+                
+                account.balance -= total;
+                showToast(`✅ Bought ${quantity} shares of ${symbol} at ${formatINR(price)} (Demo Trade)`);
+                
+            } else {
+                // Sell
+                if (!account.positions[symbol] || account.positions[symbol].quantity < quantity) {
+                    const available = account.positions[symbol] ? account.positions[symbol].quantity : 0;
+                    showToast(`Not enough shares! You have ${available} shares of ${symbol}`, 'error');
+                    return;
+                }
+                
+                account.positions[symbol].quantity -= quantity;
+                account.balance += total;
+                
+                if (account.positions[symbol].quantity === 0) {
+                    delete account.positions[symbol];
+                }
+                
+                showToast(`✅ Sold ${quantity} shares of ${symbol} at ${formatINR(price)} (Demo Trade)`);
+            }
+            
+            // Record in history
+            account.history.unshift({
+                date: new Date().toLocaleString('en-IN'),
+                type: tradeType.toUpperCase(),
+                symbol: symbol,
+                quantity: quantity,
+                price: price,
+                total: total
+            });
+            
+            account.totalTrades++;
+            saveAccount(account);
+            renderAll();
+        }
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const existing = document.querySelector('.trade-toast');
+            if (existing) existing.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'trade-toast' + (type === 'error' ? ' error' : '');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.remove(), 3000);
+        }
+        
+        // Reset demo account
+        function resetAccount() {
+            if (confirm('Reset your demo account? This will clear all positions and history, and reset your virtual balance to ₹10,00,000.')) {
+                localStorage.removeItem('learntrading_demo_account');
+                renderAll();
+                showToast('🔄 Demo account reset! You have ₹10,00,000 virtual cash again.');
+            }
+        }
+        
+        // Render positions table
+        function renderPositions() {
+            const account = getAccount();
+            const positions = account.positions;
+            const keys = Object.keys(positions);
+            
+            const emptyEl = document.getElementById('positions-empty');
+            const tableEl = document.getElementById('positions-table');
+            const bodyEl = document.getElementById('positions-body');
+            
+            if (keys.length === 0) {
+                emptyEl.style.display = 'block';
+                tableEl.style.display = 'none';
+                return;
+            }
+            
+            emptyEl.style.display = 'none';
+            tableEl.style.display = 'table';
+            
+            bodyEl.innerHTML = keys.map(symbol => {
+                const pos = positions[symbol];
+                const currentPrice = stockPrices[symbol] ? stockPrices[symbol].price : pos.avgPrice;
+                const pnl = (currentPrice - pos.avgPrice) * pos.quantity;
+                const pnlPercent = ((currentPrice - pos.avgPrice) / pos.avgPrice * 100).toFixed(2);
+                const pnlClass = pnl >= 0 ? 'profit-positive' : 'profit-negative';
+                
+                return `
+                    <tr>
+                        <td><strong>${symbol}</strong><br><small style="color:#b8c5d6;">${pos.name}</small></td>
+                        <td><span class="badge badge-success">BUY</span></td>
+                        <td>${pos.quantity}</td>
+                        <td>${formatINR(pos.avgPrice)}</td>
+                        <td>${formatINR(currentPrice)}</td>
+                        <td class="${pnlClass}"><strong>${formatINR(pnl)} (${pnlPercent}%)</strong></td>
+                        <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;" onclick="quickSell('${symbol}', ${pos.quantity})">Close</button></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        // Quick sell all shares of a position
+        function quickSell(symbol, quantity) {
+            const account = getAccount();
+            const price = stockPrices[symbol].price;
+            const total = price * quantity;
+            
+            account.balance += total;
+            
+            account.history.unshift({
+                date: new Date().toLocaleString('en-IN'),
+                type: 'SELL',
+                symbol: symbol,
+                quantity: quantity,
+                price: price,
+                total: total
+            });
+            
+            delete account.positions[symbol];
+            account.totalTrades++;
+            saveAccount(account);
+            renderAll();
+            showToast(`✅ Closed ${symbol} position — ${quantity} shares sold at ${formatINR(price)}`);
+        }
+        
+        // Render trade history
+        function renderHistory() {
+            const account = getAccount();
+            const history = account.history;
+            
+            const emptyEl = document.getElementById('history-empty');
+            const tableEl = document.getElementById('history-table');
+            const bodyEl = document.getElementById('history-body');
+            
+            if (history.length === 0) {
+                emptyEl.style.display = 'block';
+                tableEl.style.display = 'none';
+                return;
+            }
+            
+            emptyEl.style.display = 'none';
+            tableEl.style.display = 'table';
+            
+            bodyEl.innerHTML = history.slice(0, 20).map(trade => {
+                const badgeClass = trade.type === 'BUY' ? 'badge-success' : 'badge-danger';
+                return `
+                    <tr>
+                        <td>${trade.date}</td>
+                        <td><span class="badge ${badgeClass}">${trade.type}</span></td>
+                        <td><strong>${trade.symbol}</strong></td>
+                        <td>${trade.quantity}</td>
+                        <td>${formatINR(trade.price)}</td>
+                        <td>${formatINR(trade.total)}</td>
+                        <td><span class="badge badge-success">Completed</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        // Update dashboard stats
+        function updateDashboardStats() {
+            const account = getAccount();
+            
+            // Calculate portfolio value
+            let portfolioValue = 0;
+            let investedValue = 0;
+            for (let symbol in account.positions) {
+                const pos = account.positions[symbol];
+                const currentPrice = stockPrices[symbol] ? stockPrices[symbol].price : pos.avgPrice;
+                portfolioValue += currentPrice * pos.quantity;
+                investedValue += pos.avgPrice * pos.quantity;
+            }
+            
+            const totalValue = account.balance + portfolioValue;
+            const totalPnl = totalValue - account.initialBalance;
+            const pnlPercent = ((totalPnl / account.initialBalance) * 100).toFixed(2);
+            
+            document.getElementById('total-balance').textContent = formatINR(totalValue);
+            document.getElementById('available-cash').textContent = formatINR(account.balance);
+            document.getElementById('in-positions').textContent = formatINR(portfolioValue);
+            document.getElementById('total-trades').textContent = account.totalTrades;
+            
+            const pnlEl = document.getElementById('total-pnl');
+            pnlEl.textContent = `${formatINR(totalPnl)} (${pnlPercent}%) P&L`;
+            pnlEl.className = totalPnl >= 0 ? 'profit-positive' : 'profit-negative';
+            
+            const activeCount = Object.keys(account.positions).length;
+            document.getElementById('active-trades-count').textContent = `${activeCount} Active Trade${activeCount !== 1 ? 's' : ''}`;
+        }
+        
+        // Render everything
+        function renderAll() {
+            updateDashboardStats();
+            renderPositions();
+            renderHistory();
+            updateTradePreview();
+        }
+        
+        // Toggle menu
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
-
-        // Trading Chart
-        const ctx = document.getElementById('tradingChart').getContext('2d');
-        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(0, 217, 255, 0.3)');
-        gradient.addColorStop(1, 'rgba(0, 217, 255, 0)');
-
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'],
-                datasets: [{
-                    label: 'BTC/USD',
-                    data: [67200, 67850, 67400, 68200, 68900, 68300, 68742],
-                    borderColor: '#00d9ff',
-                    backgroundColor: gradient,
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4,
-                    pointRadius: 0,
-                    pointHoverRadius: 6,
-                    pointBackgroundColor: '#00d9ff',
-                    pointBorderColor: '#fff',
-                    pointBorderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        backgroundColor: 'rgba(10, 14, 26, 0.95)',
-                        titleColor: '#00d9ff',
-                        bodyColor: '#fff',
-                        borderColor: '#00d9ff',
-                        borderWidth: 1,
-                        padding: 12,
-                        displayColors: false,
-                        callbacks: {
-                            label: function(context) {
-                                return '$' + context.parsed.y.toLocaleString();
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        grid: {
-                            color: 'rgba(0, 217, 255, 0.1)',
-                            drawBorder: false
-                        },
-                        ticks: {
-                            color: '#b8c5d6'
-                        }
-                    },
-                    y: {
-                        grid: {
-                            color: 'rgba(0, 217, 255, 0.1)',
-                            drawBorder: false
-                        },
-                        ticks: {
-                            color: '#b8c5d6',
-                            callback: function(value) {
-                                return '$' + value.toLocaleString();
-                            }
-                        }
-                    }
-                },
-                interaction: {
-                    intersect: false,
-                    mode: 'index'
-                }
-            }
-        });
-
-        function selectTradeType(type) {
-            console.log('Selected trade type:', type);
-        }
+        
+        // Initialize
+        selectTradeType('buy');
+        renderAll();
+        
+        // Simulate price changes every 5 seconds
+        setInterval(simulatePriceChange, 5000);
     </script>
 </body>
 </html>
