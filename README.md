@@ -2,7 +2,7 @@
 LearnTrading.org – A Paper Trading Learning Platform which make learning trade simple and easy.
 LearnTrading.org is a beginner-friendly paper trading platform designed to help users learn the fundamentals of stock market trading without risking real money.
 This platform allows users to simulate trading using virtual currency while learning important trading concepts through quizzes, case studies, and theoretical content.
-The goal of Learntrading.org is to make trading education interactive by combining simulated market trading with educational resources and then making trading easier and effective learn about finances.
+The goal of Learntrading.org is to make trading education interactive by combining simulated market trading with educational resources and then making trading easier and effective learn about finances and stock market.
 
 ## Features
 - 📈 Paper Trading Simulation using virtual money
@@ -20,7 +20,7 @@ Frontend:
 - JavaScript
 - Chart.js for stock graphs
 Backend:
-- Python (Flask) or Node.js
+- Node.js
 Database:
 - Firebase / MongoDB / MySQL
 APIs:
