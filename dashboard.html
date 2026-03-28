@@ -48,7 +48,7 @@
                 "showSymbolLogo": true,
                 "isTransparent": true,
                 "displayMode": "adaptive",
-                "colorTheme": "dark",
+                "colorTheme": "light",
                 "locale": "en"
             }
             </script>
@@ -68,7 +68,7 @@
                         Welcome, Trader 
                         <span class="demo-badge">DEMO MODE</span>
                     </h2>
-                    <p style="margin: 0; color: #b8c5d6;">Practice trading with virtual money — zero real risk</p>
+                    <p style="margin: 0; color: #555;">Practice trading with virtual money — zero real risk</p>
                 </div>
                 <div class="flex gap-sm">
                     <button class="btn btn-success" onclick="resetAccount()">Reset Demo Account</button>
@@ -91,19 +91,19 @@
                 </div>
                 
                 <div class="card">
-                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Available Cash</p>
+                    <p style="color: #555; margin-bottom: 0.5rem;">Available Cash</p>
                     <h3 id="available-cash" style="font-size: 2rem; margin: 0.5rem 0;">₹10,00,000</h3>
                     <span class="badge badge-success">Ready to Trade</span>
                 </div>
                 
                 <div class="card">
-                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">In Positions</p>
+                    <p style="color: #555; margin-bottom: 0.5rem;">In Positions</p>
                     <h3 id="in-positions" style="font-size: 2rem; margin: 0.5rem 0;">₹0.00</h3>
                     <span class="badge badge-info" id="active-trades-count">0 Active Trades</span>
                 </div>
                 
                 <div class="card">
-                    <p style="color: #b8c5d6; margin-bottom: 0.5rem;">Total Trades Made</p>
+                    <p style="color: #555; margin-bottom: 0.5rem;">Total Trades Made</p>
                     <h3 id="total-trades" style="font-size: 2rem; margin: 0.5rem 0;">0</h3>
                     <span class="badge badge-info">Lifetime</span>
                 </div>
@@ -127,11 +127,11 @@
                                 "symbol": "NSE:RELIANCE",
                                 "interval": "15",
                                 "timezone": "Asia/Kolkata",
-                                "theme": "dark",
+                                "theme": "light",
                                 "style": "1",
                                 "locale": "en",
-                                "backgroundColor": "rgba(10, 14, 26, 0.5)",
-                                "gridColor": "rgba(100, 255, 218, 0.05)",
+                                "backgroundColor": "rgba(255, 255, 255, 0.9)",
+                                "gridColor": "rgba(74, 93, 78, 0.1)",
                                 "allow_symbol_change": true,
                                 "calendar": false,
                                 "studies": ["RSI@tv-basicstudies", "MASimple@tv-basicstudies"],
@@ -145,7 +145,7 @@
                 <!-- Quick Demo Trade Panel -->
                 <div class="card">
                     <h3>Demo Trade</h3>
-                    <p style="font-size: 0.85rem; color: #b8c5d6; margin-bottom: 1rem;">
+                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 1rem;">
                         Practice buying and selling with virtual money
                     </p>
                     <div class="flex gap-sm" style="margin-bottom: 1.5rem;">
@@ -176,11 +176,11 @@
                     
                     <div class="flex gap-sm" style="background: rgba(0,217,255,0.05); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
                         <div style="flex: 1;">
-                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Price per share</p>
+                            <p style="font-size: 0.85rem; margin: 0; color: #555;">Price per share</p>
                             <p id="trade-price-display" style="font-size: 1.1rem; margin: 0; font-weight: 600;">₹2,890.50</p>
                         </div>
                         <div style="flex: 1;">
-                            <p style="font-size: 0.85rem; margin: 0; color: #b8c5d6;">Total Cost</p>
+                            <p style="font-size: 0.85rem; margin: 0; color: #555;">Total Cost</p>
                             <p id="trade-total-display" style="font-size: 1.1rem; margin: 0; font-weight: 600;">₹28,905.00</p>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                     <button class="btn btn-primary" id="execute-trade-btn" style="width: 100%; font-size: 1.1rem;" onclick="executeDemoTrade()">
                         Buy with Virtual Money
                     </button>
-                    <p style="font-size: 0.75rem; color: #b8c5d6; text-align: center; margin-top: 0.5rem;">
+                    <p style="font-size: 0.75rem; color: #555; text-align: center; margin-top: 0.5rem;">
                         ⚠️ This is a demo trade. No real money is used.
                     </p>
                 </div>
@@ -200,7 +200,7 @@
                         <div class="tradingview-widget-container__widget"></div>
                         <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
                         {
-                            "colorTheme": "dark",
+                            "colorTheme": "light",
                             "dateRange": "1D",
                             "showChart": true,
                             "locale": "en",
@@ -255,7 +255,7 @@
                     <h3 style="margin: 0;">Your Virtual Portfolio</h3>
                     <span class="demo-badge">DEMO POSITIONS</span>
                 </div>
-                <div id="positions-empty" style="text-align: center; padding: 3rem; color: #b8c5d6;">
+                <div id="positions-empty" style="text-align: center; padding: 3rem; color: #555;">
                     <p style="font-size: 2rem; margin-bottom: 0.5rem;">📊</p>
                     <p style="font-size: 1.1rem;">No open positions yet</p>
                     <p>Use the Demo Trade panel above to buy your first stock with virtual money!</p>
@@ -283,7 +283,7 @@
                     <h3 style="margin: 0;">Trade History</h3>
                     <span class="demo-badge">DEMO TRADES</span>
                 </div>
-                <div id="history-empty" style="text-align: center; padding: 3rem; color: #b8c5d6;">
+                <div id="history-empty" style="text-align: center; padding: 3rem; color: #555;">
                     <p style="font-size: 2rem; margin-bottom: 0.5rem;">📋</p>
                     <p style="font-size: 1.1rem;">No trades yet</p>
                     <p>Your demo trade history will appear here once you start trading.</p>

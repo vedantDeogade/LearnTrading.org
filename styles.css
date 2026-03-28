@@ -10,25 +10,25 @@
    CSS VARIABLES - DESIGN SYSTEM
    =================================== */
 :root {
-    /* Color Palette - Ocean Deep */
-    --primary-bg: #020c1b;
-    --secondary-bg: #0a192f;
-    --card-bg: rgba(10, 25, 47, 0.85);
-    --glass-bg: rgba(17, 34, 64, 0.6);
+    /* Color Palette - Natural Earth */
+    --primary-bg: #faf9f6; /* Off-white / Pearl */
+    --secondary-bg: #f2f0ea; /* Soft Beige */
+    --card-bg: #ffffff;
+    --glass-bg: rgba(255, 255, 255, 0.85);
     
-    /* Ocean Accents */
-    --neon-cyan: #64ffda; /* Teal */
-    --neon-blue: #00b4d8; /* Light Blue */
-    --neon-purple: #ffb703; /* Contrast Yellow */
-    --electric-green: #64ffda;
-    --warning-orange: #fb8500;
-    --danger-red: #ef476f;
+    /* Earthy Accents */
+    --neon-cyan: #4a5d4e; /* Deep Sage Green */
+    --neon-blue: #6d8a74; /* Soft Green */
+    --neon-purple: #c2a878; /* Muted Gold/Tan */
+    --electric-green: #3a5a40; /* Forest Green */
+    --warning-orange: #d4a373; /* Terracotta */
+    --danger-red: #bc4749; /* Soft Red */
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #64ffda 0%, #00b4d8 100%);
-    --gradient-success: linear-gradient(135deg, #64ffda 0%, #2a9d8f 100%);
-    --gradient-danger: linear-gradient(135deg, #ef476f 0%, #e01e37 100%);
-    --gradient-card: linear-gradient(145deg, rgba(100, 255, 218, 0.05) 0%, rgba(0, 180, 216, 0.02) 100%);
+    --gradient-primary: linear-gradient(135deg, #4a5d4e 0%, #6d8a74 100%);
+    --gradient-success: linear-gradient(135deg, #3a5a40 0%, #588157 100%);
+    --gradient-danger: linear-gradient(135deg, #bc4749 0%, #e07a5f 100%);
+    --gradient-card: linear-gradient(145deg, rgba(74, 93, 78, 0.03) 0%, rgba(109, 138, 116, 0.01) 100%);
     
     /* Typography */
     --font-display: 'Space Grotesk', sans-serif;
@@ -44,14 +44,14 @@
     /* Borders */
     --border-radius: 12px;
     --border-radius-lg: 20px;
-    --border-color: rgba(100, 255, 218, 0.2);
+    --border-color: rgba(74, 93, 78, 0.15);
     
-    /* Shadows */
-    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-    --shadow-neon: 0 0 20px rgba(100, 255, 218, 0.3);
-    --shadow-neon-strong: 0 0 40px rgba(100, 255, 218, 0.5);
+    /* Soft Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --shadow-neon: 0 2px 10px rgba(74, 93, 78, 0.1);
+    --shadow-neon-strong: 0 4px 15px rgba(74, 93, 78, 0.15);
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -76,7 +76,7 @@ html {
 body {
     font-family: var(--font-body);
     background: var(--primary-bg);
-    color: #e0e6ed;
+    color: #333333;
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
@@ -91,8 +91,8 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(0, 180, 216, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(100, 255, 218, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 20% 30%, rgba(74, 93, 78, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(109, 138, 116, 0.08) 0%, transparent 40%);
     background-color: var(--primary-bg);
     z-index: -1;
     animation: oceanBreathe 15s ease-in-out infinite alternate;
@@ -131,7 +131,7 @@ h2 {
 
 h3 {
     font-size: 1.8rem;
-    color: #fff;
+    color: #333333;
     margin-bottom: var(--spacing-sm);
 }
 
@@ -143,7 +143,7 @@ h4 {
 
 p {
     margin-bottom: var(--spacing-sm);
-    color: #b8c5d6;
+    color: #555555;
     font-size: 1.05rem;
 }
 
@@ -154,7 +154,7 @@ a {
 }
 
 a:hover {
-    color: #fff;
+    color: #222222;
     text-shadow: var(--shadow-neon);
 }
 
@@ -166,7 +166,7 @@ a:hover {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(3, 12, 10, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
     padding: 1rem 0;
@@ -211,7 +211,7 @@ a:hover {
     font-family: var(--font-body);
     font-weight: 500;
     font-size: 1rem;
-    color: #b8c5d6;
+    color: #555555;
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
@@ -280,7 +280,7 @@ a:hover {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.05);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
 }
@@ -292,7 +292,7 @@ a:hover {
 
 .btn-primary {
     background: var(--gradient-primary);
-    color: #fff;
+    color: #ffffff;
     box-shadow: var(--shadow-neon);
 }
 
@@ -321,7 +321,7 @@ a:hover {
 
 .btn-danger {
     background: var(--gradient-danger);
-    color: #fff;
+    color: #ffffff;
 }
 
 /* ===================================
@@ -370,7 +370,7 @@ a:hover {
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 217, 255, 0.15);
+    border: 1px solid rgba(74, 93, 78, 0.15);
 }
 
 /* ===================================
@@ -403,7 +403,7 @@ a:hover {
     right: -20%;
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, rgba(0, 217, 255, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(74, 93, 78, 0.15) 0%, transparent 70%);
     animation: pulse 8s ease-in-out infinite;
 }
 
@@ -452,7 +452,7 @@ a:hover {
 
 .stat-label {
     font-size: 1rem;
-    color: #b8c5d6;
+    color: #555555;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -480,10 +480,10 @@ a:hover {
 .form-textarea {
     width: 100%;
     padding: 1rem;
-    background: rgba(20, 30, 48, 0.6);
+    background: rgba(240, 240, 240, 0.6);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    color: #fff;
+    color: #222222;
     font-family: var(--font-body);
     font-size: 1rem;
     transition: var(--transition-normal);
@@ -495,7 +495,7 @@ a:hover {
     outline: none;
     border-color: var(--neon-cyan);
     box-shadow: var(--shadow-neon);
-    background: rgba(20, 30, 48, 0.8);
+    background: rgba(240, 240, 240, 0.8);
 }
 
 .form-textarea {
@@ -516,7 +516,7 @@ a:hover {
 
 .balance-card {
     background: var(--gradient-primary);
-    color: #fff;
+    color: #ffffff;
     border: none;
 }
 
@@ -544,12 +544,12 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-sm);
-    border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+    border-bottom: 1px solid rgba(74, 93, 78, 0.1);
     transition: var(--transition-fast);
 }
 
 .asset-item:hover {
-    background: rgba(0, 217, 255, 0.05);
+    background: rgba(74, 93, 78, 0.05);
 }
 
 .asset-icon {
@@ -566,7 +566,7 @@ a:hover {
 
 .chart-container {
     height: 400px;
-    background: rgba(10, 14, 26, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: var(--border-radius);
     padding: var(--spacing-md);
     position: relative;
@@ -584,7 +584,7 @@ a:hover {
 }
 
 .data-table thead {
-    background: rgba(0, 217, 255, 0.1);
+    background: rgba(74, 93, 78, 0.1);
 }
 
 .data-table th {
@@ -600,7 +600,7 @@ a:hover {
 
 .data-table td {
     padding: 1rem;
-    border-top: 1px solid rgba(0, 217, 255, 0.1);
+    border-top: 1px solid rgba(74, 93, 78, 0.1);
 }
 
 .data-table tbody tr {
@@ -608,7 +608,7 @@ a:hover {
 }
 
 .data-table tbody tr:hover {
-    background: rgba(0, 217, 255, 0.05);
+    background: rgba(74, 93, 78, 0.05);
 }
 
 /* ===================================
@@ -625,7 +625,7 @@ a:hover {
 }
 
 .badge-success {
-    background: rgba(0, 255, 136, 0.2);
+    background: rgba(58, 90, 64, 0.2);
     color: var(--electric-green);
     border: 1px solid var(--electric-green);
 }
@@ -637,13 +637,13 @@ a:hover {
 }
 
 .badge-danger {
-    background: rgba(255, 0, 85, 0.2);
+    background: rgba(188, 71, 73, 0.2);
     color: var(--danger-red);
     border: 1px solid var(--danger-red);
 }
 
 .badge-info {
-    background: rgba(0, 217, 255, 0.2);
+    background: rgba(74, 93, 78, 0.2);
     color: var(--neon-cyan);
     border: 1px solid var(--neon-cyan);
 }
@@ -678,7 +678,7 @@ a:hover {
 }
 
 .footer-links a {
-    color: #b8c5d6;
+    color: #555555;
     font-size: 0.95rem;
 }
 
@@ -689,8 +689,8 @@ a:hover {
 .footer-bottom {
     text-align: center;
     padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(0, 217, 255, 0.1);
-    color: #6b7885;
+    border-top: 1px solid rgba(74, 93, 78, 0.1);
+    color: #777777;
     font-size: 0.9rem;
 }
 
@@ -780,7 +780,7 @@ a:hover {
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(10, 14, 26, 0.98);
+        background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(20px);
         flex-direction: column;
         padding: var(--spacing-md);
@@ -822,8 +822,8 @@ a:hover {
 
 /* Demo Account Banner */
 .demo-banner {
-    background: linear-gradient(135deg, rgba(255, 183, 3, 0.15) 0%, rgba(251, 133, 0, 0.15) 100%);
-    border: 1px solid rgba(255, 183, 3, 0.4);
+    background: linear-gradient(135deg, rgba(194, 168, 120, 0.15) 0%, rgba(212, 163, 115, 0.15) 100%);
+    border: 1px solid rgba(194, 168, 120, 0.4);
     border-radius: var(--border-radius);
     padding: 0.75rem 1.5rem;
     display: flex;
@@ -844,8 +844,8 @@ a:hover {
 }
 
 @keyframes demoPulse {
-    0%, 100% { border-color: rgba(255, 183, 3, 0.4); }
-    50% { border-color: rgba(255, 183, 3, 0.8); box-shadow: 0 0 20px rgba(255, 183, 3, 0.15); }
+    0%, 100% { border-color: rgba(194, 168, 120, 0.4); }
+    50% { border-color: rgba(194, 168, 120, 0.8); box-shadow: 0 0 20px rgba(194, 168, 120, 0.15); }
 }
 
 /* Demo Badge Pill */
@@ -853,7 +853,7 @@ a:hover {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    background: linear-gradient(135deg, rgba(255, 183, 3, 0.2) 0%, rgba(251, 133, 0, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(194, 168, 120, 0.2) 0%, rgba(212, 163, 115, 0.2) 100%);
     border: 1px solid var(--neon-purple);
     color: var(--neon-purple);
     padding: 0.3rem 0.8rem;
@@ -892,9 +892,9 @@ a:hover {
     left: 0;
     width: 100%;
     z-index: 999;
-    background: rgba(3, 12, 10, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    border-bottom: 1px solid rgba(109, 138, 116, 0.1);
     overflow: hidden;
 }
 
@@ -906,7 +906,7 @@ a:hover {
 }
 
 .chart-widget-container {
-    background: rgba(10, 14, 26, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: var(--border-radius);
     padding: 0;
     overflow: hidden;
@@ -919,9 +919,9 @@ a:hover {
 
 /* Live Market Preview Card */
 .live-market-preview {
-    background: rgba(10, 25, 47, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(100, 255, 218, 0.15);
+    border: 1px solid rgba(109, 138, 116, 0.15);
     border-radius: var(--border-radius-lg);
     padding: 0;
     overflow: hidden;
@@ -942,7 +942,7 @@ a:hover {
 
 .market-stat-card {
     background: rgba(0, 180, 216, 0.05);
-    border: 1px solid rgba(100, 255, 218, 0.1);
+    border: 1px solid rgba(109, 138, 116, 0.1);
     border-radius: 10px;
     padding: 0.75rem 1rem;
     transition: var(--transition-fast);
@@ -957,7 +957,7 @@ a:hover {
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.85rem;
-    color: #fff;
+    color: #4a5d4e;
 }
 
 .market-stat-card .price {
@@ -1024,16 +1024,16 @@ a:hover {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: rgba(10, 25, 47, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border: 1px solid var(--electric-green);
     border-radius: var(--border-radius);
     padding: 1rem 1.5rem;
-    color: #fff;
+    color: #ffffff;
     font-family: var(--font-display);
     z-index: 10000;
     animation: slideInToast 0.5s ease-out, fadeOutToast 0.5s ease-in 2.5s forwards;
-    box-shadow: 0 0 30px rgba(100, 255, 218, 0.3);
+    box-shadow: 0 0 30px rgba(109, 138, 116, 0.3);
     max-width: 350px;
 }
 
@@ -1059,7 +1059,7 @@ a:hover {
 
 /* Screener widget styles */
 .screener-widget {
-    background: rgba(10, 14, 26, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     border-radius: var(--border-radius);
     overflow: hidden;
     min-height: 400px;
@@ -1069,7 +1069,7 @@ a:hover {
    LOADING STATES
    =================================== */
 .spinner {
-    border: 3px solid rgba(0, 217, 255, 0.2);
+    border: 3px solid rgba(74, 93, 78, 0.2);
     border-top: 3px solid var(--neon-cyan);
     border-radius: 50%;
     width: 40px;
