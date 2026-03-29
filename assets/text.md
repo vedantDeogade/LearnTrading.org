@@ -125,3 +125,32 @@
   top: 0;
   border-radius: 10px;
 }
+
+
+
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+{
+  "symbols": [
+    {"description": "Indices", "proName": "FOREXCOM:SPXUSD"},
+    {"description": "NASDAQ", "proName": "FOREXCOM:NSXUSD"},
+    {"description": "Dow Jones", "proName": "FOREXCOM:DJI"},
+    {"description": "Gold", "proName": "FOREXCOM:XAUUSD"},
+    {"description": "Crude Oil", "proName": "FOREXCOM:USOIL"},
+    {"description": "EUR/USD", "proName": "FX_IDC:EURUSD"},
+    {"description": "BTC", "proName": "BINANCE:BTCUSDT"},
+    {"description": "ETH", "proName": "BINANCE:ETHUSDT"},
+    {"description": "NIFTY 50", "proName": "NSE:NIFTY"},
+    {"description": "BANKNIFTY", "proName": "NSE:BANKNIFTY"},
+    {"description": "RELIANCE", "proName": "NSE:RELIANCE"},
+    {"description": "TCS", "proName": "NSE:TCS"},
+    {"description": "INFY", "proName": "NSE:INFY"},
+    {"description": "HDFC BANK", "proName": "NSE:HDFCBANK"},
+    {"description": "ICICI BANK", "proName": "NSE:ICICIBANK"}
+  ],
+  "showSymbolLogo": true,
+  "isTransparent": true,
+  "displayMode": "adaptive",
+  "colorTheme": "dark",
+  "locale": "en"
+}
+</script>
