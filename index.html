@@ -26,37 +26,10 @@
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="dashboard.html" class="btn btn-primary" style="padding: 0.7rem 1.5rem; color: rgb(255, 255, 255);">Start Demo Trading</a></li>
+                 <li><a href="dashboard.html" class="btn btn-primary" style="padding: 0.7rem 1.5rem; color: rgb(255, 255, 255);">Learn Trading</a></li>
             </ul>
         </div>
     </nav>
-    <!-- Live Market Ticker Tape -->
-    <div class="ticker-tape-container">
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-            {
-                "symbols": [
-                    {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500"},
-                    {"proName": "FOREXCOM:NSXUSD", "title": "US 100"},
-                    {"proName": "FX_IDC:EURUSD", "title": "EUR to USD"},
-                    {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
-                    {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"},
-                    {"proName": "NSE:NIFTY", "title": "NIFTY 50"},
-                    {"proName": "NSE:BANKNIFTY", "title": "Bank Nifty"},
-                    {"proName": "BSE:SENSEX", "title": "SENSEX"},
-                    {"proName": "NSE:RELIANCE", "title": "Reliance"},
-                    {"proName": "NSE:TCS", "title": "TCS"},
-                    {"proName": "NSE:INFY", "title": "Infosys"}
-                ],
-                "showSymbolLogo": true,
-                "isTransparent": true,
-                "displayMode": "adaptive",
-                "colorTheme": "light",
-                "locale": "en"
-            }
-            </script>
-        </div>
-    </div>
     <!-- Hero Section -->
     <section class="hero-section hero-section-with-ticker">
         <div class="container">
@@ -75,7 +48,6 @@
                         <a href="about.html" class="btn btn-secondary">How It Works</a>
                     </div>
                     
-                    <!-- Quick Stats -->
                     <div class="grid-3" style="margin-top: 3rem; gap: 2rem;">
                         <div class="stat-box fade-in-up delay-1">
                             <span class="stat-number">₹10L</span>
@@ -86,44 +58,12 @@
                             <span class="stat-label">Markets to Practice</span>
                         </div>
                         <div class="stat-box fade-in-up delay-3">
-                            <span class="stat-number">₹0</span>
+                            <span class="stat-number">0%</span>
                             <span class="stat-label">Real Risk</span>
                         </div>
                     </div>
                 </div>         
     </section>
-
-    <!-- Live Chart Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="text-center">Live Stock Market Charts</h2>
-            <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 2rem; color: #555;">
-                Track real-time market data. Click any stock below to view its live chart.
-            </p>
-            <div class="chart-widget-container" style="height: 500px;">
-                <div class="tradingview-widget-container" style="height: 100%;">
-                    <div id="tradingview-chart" style="height: 100%;"></div>
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                    {
-                        "autosize": true,
-                        "symbol": "NSE:NIFTY",
-                        "interval": "D",
-                        "timezone": "Asia/Kolkata",
-                        "theme": "light",
-                        "style": "1",
-                        "locale": "en",
-                        "backgroundColor": "rgba(255, 255, 255, 0.9)",
-                        "gridColor": "rgba(74, 93, 78, 0.1)",
-                        "allow_symbol_change": true,
-                        "calendar": false,
-                        "support_host": "https://www.tradingview.com"
-                    }
-                    </script>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Features Section -->
     <section class="section">
         <div class="container">
@@ -210,7 +150,7 @@
                         <li>Performance analytics</li>
                         <li>Technical indicators</li>
                     </ul>
-                    <a href="dashboard.html" class="btn btn-primary" style="width: 100%; text-align: center;">Start Free</a>
+                    <a href="dashboard.html" class="btn btn-primary" style="width: 100%; text-align: center;">BUY</a>
                 </div>
                 
                 <div class="card">
@@ -227,7 +167,7 @@
                         <li>Leaderboard competitions</li>
                         <li>Export trade reports</li>
                     </ul>
-                    <a href="dashboard.html" class="btn btn-secondary" style="width: 100%; text-align: center;">Start Free</a>
+                    <a href="dashboard.html" class="btn btn-secondary" style="width: 100%; text-align: center;">BUY</a>
                 </div>
             </div>
         </div>
