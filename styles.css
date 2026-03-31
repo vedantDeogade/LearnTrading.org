@@ -165,7 +165,7 @@ a:hover {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 90%;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border-color);
@@ -209,8 +209,8 @@ a:hover {
 
 .nav-links a {
     font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 400;
+    font-size: 0.8rem;
     color: #555555;
     text-transform: uppercase;
     letter-spacing: 1px;
