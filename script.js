@@ -34,12 +34,12 @@ function createAuthModal() {
 
             <!-- Tabs -->
             <div class="auth-tabs">
-                <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Log In</button>
-                <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+                <button class="auth-tab active" id="tab-login" data-tab="login">Log In</button>
+                <button class="auth-tab" id="tab-signup" data-tab="signup">Sign Up</button>
             </div>
 
             <!-- LOGIN FORM -->
-            <form class="auth-form" id="login-form" onsubmit="handleLogin(event)">
+            <form class="auth-form" id="login-form" >
                 <div class="auth-brand">
                     <span class="auth-logo">📈</span>
                     <h2>Welcome Back</h2>
@@ -68,21 +68,21 @@ function createAuthModal() {
                 <div class="auth-divider"><span>or continue with</span></div>
 
                 <div class="auth-social-row">
-                    <button type="button" class="auth-social-btn" onclick="socialLogin('Google')">
+                    <button type="button" class="auth-social-btn" data-provider="Google">
                         <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                         Google
                     </button>
-                    <button type="button" class="auth-social-btn" onclick="socialLogin('GitHub')">
+                    <button type="button" class="auth-social-btn" data-provider="GitHub">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                         GitHub
                     </button>
                 </div>
 
-                <p class="auth-footer-text">Don't have an account? <a href="#" onclick="switchAuthTab('signup'); return false;">Sign up free</a></p>
+                <p class="auth-footer-text">Don't have an account? <a href="#" data-switch-tab="signup">Sign up free</a></p>
             </form>
 
             <!-- SIGNUP FORM -->
-            <form class="auth-form" id="signup-form" style="display:none;" onsubmit="handleSignup(event)">
+            <form class="auth-form" id="signup-form" style="display:none;" >
                 <div class="auth-brand">
                     <span class="auth-logo">🚀</span>
                     <h2>Create Account</h2>
@@ -118,35 +118,44 @@ function createAuthModal() {
                 <div class="auth-divider"><span>or continue with</span></div>
 
                 <div class="auth-social-row">
-                    <button type="button" class="auth-social-btn" onclick="socialLogin('Google')">
+                    <button type="button" class="auth-social-btn" data-provider="Google">
                         <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
                         Google
                     </button>
-                    <button type="button" class="auth-social-btn" onclick="socialLogin('GitHub')">
+                    <button type="button" class="auth-social-btn" data-provider="GitHub">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                         GitHub
                     </button>
                 </div>
 
-                <p class="auth-footer-text">Already have an account? <a href="#" onclick="switchAuthTab('login'); return false;">Log in</a></p>
+                <p class="auth-footer-text">Already have an account? <a href="#" data-switch-tab="login">Log in</a></p>
             </form>
         </div>
     `;
 
+    
     document.body.appendChild(overlay);
 
-    // Close on overlay click (outside modal)
-    overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closeAuthModal();
+    // ── Wire modal events (no inline handlers) ──
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeAuthModal(); });
+    overlay.querySelector('#auth-close-btn').addEventListener('click', closeAuthModal);
+    overlay.querySelectorAll('.auth-tab[data-tab]').forEach(btn => {
+        btn.addEventListener('click', function() { switchAuthTab(this.getAttribute('data-tab')); });
+    });
+    overlay.querySelectorAll('[data-switch-tab]').forEach(link => {
+        link.addEventListener('click', function(e) { e.preventDefault(); switchAuthTab(this.getAttribute('data-switch-tab')); });
+    });
+    const lf = overlay.querySelector('#login-form');
+    const sf = overlay.querySelector('#signup-form');
+    if (lf) lf.addEventListener('submit', handleLogin);
+    if (sf) sf.addEventListener('submit', handleSignup);
+    overlay.querySelectorAll('.auth-social-btn[data-provider]').forEach(btn => {
+        btn.addEventListener('click', function() { socialLogin(this.getAttribute('data-provider')); });
+    });
+    document.addEventListener('keydown', function escH(e) {
+        if (e.key === 'Escape') { closeAuthModal(); document.removeEventListener('keydown', escH); }
     });
 
-    // Close button
-    document.getElementById('auth-close-btn').addEventListener('click', closeAuthModal);
-
-    // ESC key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeAuthModal();
-    });
 }
 
 function openAuthModal(tab) {
@@ -287,15 +296,19 @@ function updateAuthUI() {
             <div class="nav-user-pill">
                 <span class="nav-user-avatar">${name.charAt(0).toUpperCase()}</span>
                 <span class="nav-user-name">${name}</span>
-                <button class="nav-logout-btn" onclick="logOut()" title="Log out">✕</button>
+                <button class="nav-logout-btn" id="nav-logout-btn" title="Log out">✕</button>
             </div>
         `;
         navLinks.appendChild(li);
+        const logoutBtn = li.querySelector('#nav-logout-btn');
+        if (logoutBtn) logoutBtn.addEventListener('click', logOut);
     } else {
         const li = document.createElement('li');
         li.id = 'nav-auth-section';
-        li.innerHTML = `<a href="#" class="btn btn-primary nav-login-btn" style="padding: 0.7rem 1.5rem; color:#fff;" onclick="openAuthModal('login'); return false;">Login / Sign Up</a>`;
+        li.innerHTML = `<a href="#" class="btn btn-primary nav-login-btn" style="padding: 0.7rem 1.5rem; color:#fff;" id="nav-login-link">Login / Sign Up</a>`;
         navLinks.appendChild(li);
+        const loginLink = li.querySelector('#nav-login-link');
+        if (loginLink) loginLink.addEventListener('click', function(e){ e.preventDefault(); openAuthModal('login'); });
     }
 }
 
@@ -555,7 +568,7 @@ function renderPositions() {
                 <td>${formatINR(pos.avgPrice)}</td>
                 <td>${formatINR(currentPrice)}</td>
                 <td class="${pnlClass}"><strong>${formatINR(pnl)} (${pnlPercent}%)</strong></td>
-                <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;" onclick="quickSell('${symbol}', ${pos.quantity})">Close</button></td>
+                <td><button class="btn btn-danger" style="padding: 0.5rem 1rem;" data-symbol="${symbol}" data-qty="${pos.quantity}">Close</button></td>
             </tr>
         `;
     }).join('');
@@ -667,16 +680,96 @@ function renderAll() {
     renderHistory();
     updateTradePreview();
 }
+// ============================================
+// DARK MODE
+// ============================================
+
+// Apply theme IMMEDIATELY before DOM is ready (avoids flash)
+(function() {
+    const saved = localStorage.getItem('learntrading_theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+})();
+
+function toggleTheme() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('learntrading_theme', 'light');
+        updateThemeIcons('light');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('learntrading_theme', 'dark');
+        updateThemeIcons('dark');
+    }
+}
+
+function updateThemeIcons(theme) {
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+}
 
 // ============================================
-// INITIALIZATION
+// INITIALIZATION — Wire all events here
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
-    // Set up auth UI
-    updateAuthUI();
 
-    // Set up button interception for non-logged-in users
+    // ----- Sync theme icon on load -----
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+    updateThemeIcons(currentTheme);
+
+    // ----- Theme toggle buttons -----
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.theme-toggle-btn')) toggleTheme();
+    });
+
+    // ----- Mobile menu toggle -----
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks   = document.getElementById('navLinks');
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+        // Close menu on outside click
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.nav-container')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    }
+
+    // ----- FAQ accordion -----
+    document.querySelectorAll('[data-faq-id]').forEach(item => {
+        item.addEventListener('click', function() {
+            const id = this.getAttribute('data-faq-id');
+            toggleFaq(id);
+        });
+    });
+
+    // ----- Auth UI -----
+    updateAuthUI();
     interceptButtons();
+
+    // ----- Dashboard: BUY / SELL buttons -----
+    const btnBuy = document.getElementById('btn-buy');
+    const btnSell = document.getElementById('btn-sell');
+    const executeBtn = document.getElementById('execute-trade-btn');
+    const resetBtn = document.getElementById('reset-account-btn');
+    const tradeAsset = document.getElementById('trade-asset');
+    const tradeQty = document.getElementById('trade-quantity');
+
+    if (btnBuy)    btnBuy.addEventListener('click',    () => selectTradeType('buy'));
+    if (btnSell)   btnSell.addEventListener('click',   () => selectTradeType('sell'));
+    if (executeBtn) executeBtn.addEventListener('click', executeDemoTrade);
+    if (resetBtn)  resetBtn.addEventListener('click',  resetAccount);
+    if (tradeAsset) tradeAsset.addEventListener('change', updateTradePreview);
+    if (tradeQty)   tradeQty.addEventListener('input',   updateTradePreview);
 
     // Dashboard-specific init
     if (document.getElementById('trade-asset')) {
@@ -684,4 +777,16 @@ document.addEventListener('DOMContentLoaded', function() {
         renderAll();
         setInterval(simulatePriceChange, 5000);
     }
+
+    // ----- Event delegation: quickSell buttons in positions table -----
+    // (these are dynamically rendered, so we delegate from a stable ancestor)
+    document.addEventListener('click', function(e) {
+        const closeBtn = e.target.closest('button[data-symbol]');
+        if (closeBtn) {
+            const symbol = closeBtn.getAttribute('data-symbol');
+            const qty    = parseInt(closeBtn.getAttribute('data-qty'), 10);
+            quickSell(symbol, qty);
+        }
+    });
 });
+

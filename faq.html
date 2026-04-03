@@ -52,17 +52,18 @@
     <img src="assets/logo.png" alt="Logo" style="height: 40px;">
     <span>LEARNTRADING</span>
 </a>
-            <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links" id="navLinks">
+                <li><button class="theme-toggle-btn" style="background:none; border:none; font-size:1.5rem; cursor:pointer; padding: 0.5rem;" aria-label="Toggle Dark Mode">🌙</button></li>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="faq.html" class="active">FAQ</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                <li><a href="dashboard.html" class="btn btn-primary" style="padding: 0.7rem 1.5rem;">Dashboard</a></li>
+                <li><a href="dashboard.html" class="btn btn-primary">Dashboard</a></li>
             </ul>
         </div>
     </nav>
@@ -84,7 +85,7 @@
             <div class="card" style="margin-bottom: 3rem;">
                 <h2 style="margin-bottom: 2rem;">Getting Started</h2>
 
-                <div class="faq-item" onclick="toggleFaq(1)">
+                <div class="faq-item" data-faq-id="1">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">How do I create an account?</h4>
                         <span class="faq-icon" id="icon-1">▼</span>
@@ -94,7 +95,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(2)">
+                <div class="faq-item" data-faq-id="2">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">What is the minimum deposit required?</h4>
                         <span class="faq-icon" id="icon-2">▼</span>
@@ -104,7 +105,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(3)">
+                <div class="faq-item" data-faq-id="3">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">How long does account verification take?</h4>
                         <span class="faq-icon" id="icon-3">▼</span>
@@ -119,7 +120,7 @@
             <div class="card" style="margin-bottom: 3rem;">
                 <h2 style="margin-bottom: 2rem;">Trading</h2>
 
-                <div class="faq-item" onclick="toggleFaq(4)">
+                <div class="faq-item" data-faq-id="4">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">What markets can I trade?</h4>
                         <span class="faq-icon" id="icon-4">▼</span>
@@ -129,7 +130,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(5)">
+                <div class="faq-item" data-faq-id="5">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">What are your trading fees?</h4>
                         <span class="faq-icon" id="icon-5">▼</span>
@@ -139,7 +140,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(6)">
+                <div class="faq-item" data-faq-id="6">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">Can I use leverage?</h4>
                         <span class="faq-icon" id="icon-6">▼</span>
@@ -149,7 +150,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(7)">
+                <div class="faq-item" data-faq-id="7">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">What order types do you support?</h4>
                         <span class="faq-icon" id="icon-7">▼</span>
@@ -164,7 +165,7 @@
             <div class="card" style="margin-bottom: 3rem;">
                 <h2 style="margin-bottom: 2rem;">Deposits & Withdrawals</h2>
 
-                <div class="faq-item" onclick="toggleFaq(8)">
+                <div class="faq-item" data-faq-id="8">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">How do I deposit funds?</h4>
                         <span class="faq-icon" id="icon-8">▼</span>
@@ -174,7 +175,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(9)">
+                <div class="faq-item" data-faq-id="9">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">How long do withdrawals take?</h4>
                         <span class="faq-icon" id="icon-9">▼</span>
@@ -184,7 +185,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(10)">
+                <div class="faq-item" data-faq-id="10">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">Are there withdrawal limits?</h4>
                         <span class="faq-icon" id="icon-10">▼</span>
@@ -199,7 +200,7 @@
             <div class="card" style="margin-bottom: 3rem;">
                 <h2 style="margin-bottom: 2rem;">Security</h2>
 
-                <div class="faq-item" onclick="toggleFaq(11)">
+                <div class="faq-item" data-faq-id="11">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">How do you protect my funds?</h4>
                         <span class="faq-icon" id="icon-11">▼</span>
@@ -209,7 +210,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(12)">
+                <div class="faq-item" data-faq-id="12">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">Do you offer two-factor authentication?</h4>
                         <span class="faq-icon" id="icon-12">▼</span>
@@ -219,7 +220,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(13)">
+                <div class="faq-item" data-faq-id="13">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">What should I do if I suspect unauthorized access?</h4>
                         <span class="faq-icon" id="icon-13">▼</span>
@@ -234,7 +235,7 @@
             <div class="card">
                 <h2 style="margin-bottom: 2rem;">Technical Support</h2>
 
-                <div class="faq-item" onclick="toggleFaq(14)">
+                <div class="faq-item" data-faq-id="14">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">Is there a mobile app?</h4>
                         <span class="faq-icon" id="icon-14">▼</span>
@@ -244,7 +245,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(15)">
+                <div class="faq-item" data-faq-id="15">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">Do you offer API access?</h4>
                         <span class="faq-icon" id="icon-15">▼</span>
@@ -254,7 +255,7 @@
                     </div>
                 </div>
 
-                <div class="faq-item" onclick="toggleFaq(16)">
+                <div class="faq-item" data-faq-id="16">
                     <div class="faq-question">
                         <h4 style="margin: 0; color: #333;">How can I contact support?</h4>
                         <span class="faq-icon" id="icon-16">▼</span>

@@ -15,17 +15,18 @@
     <img src="assets/logo.png" alt="Logo" style="height: 40px;">
     <span>LEARNTRADING</span>
 </a>
-            <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <ul class="nav-links" id="navLinks">
+                <li><button class="theme-toggle-btn" style="background:none; border:none; font-size:1.5rem; cursor:pointer; padding: 0.5rem;" aria-label="Toggle Dark Mode">🌙</button></li>
                 <li><a href="dashboard.html" class="active">Dashboard</a></li>
                 <li><a href="#markets-section">Markets</a></li>
                 <li><a href="#portfolio-section">Portfolio</a></li>
                 <li><a href="#history-section">History</a></li>
-                <li><a href="index.html" class="btn btn-secondary" style="padding: 0.7rem 1.5rem;">Home</a></li>
+                <li><a href="index.html" class="btn btn-secondary">Home</a></li>
             </ul>
         </div>
     </nav>
@@ -74,7 +75,7 @@
                     <p style="margin: 0; color: #555;">Practice trading with virtual money — zero real risk</p>
                 </div>
                 <div class="flex gap-sm">
-                    <button class="btn btn-success" onclick="resetAccount()">Reset Demo Account</button>
+                    <button class="btn btn-success" id="reset-account-btn">Reset Demo Account</button>
                 </div>
             </div>
         </div>
@@ -152,13 +153,13 @@
                         Practice buying and selling with virtual money
                     </p>
                     <div class="flex gap-sm" style="margin-bottom: 1.5rem;">
-                        <button class="btn btn-success" id="btn-buy" style="flex: 1;" onclick="selectTradeType('buy')">BUY</button>
-                        <button class="btn btn-danger" id="btn-sell" style="flex: 1;" onclick="selectTradeType('sell')">SELL</button>
+                        <button class="btn btn-success" id="btn-buy" style="flex: 1;" >BUY</button>
+                        <button class="btn btn-danger" id="btn-sell" style="flex: 1;" >SELL</button>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label">Stock / Asset</label>
-                        <select class="form-select" id="trade-asset" onchange="updateTradePreview()">
+                        <select class="form-select" id="trade-asset" >
                             <option value="RELIANCE" data-price="2890.50">RELIANCE - Reliance Industries</option>
                             <option value="TCS" data-price="3950.75">TCS - Tata Consultancy Services</option>
                             <option value="INFY" data-price="1685.30">INFY - Infosys</option>
@@ -174,7 +175,7 @@
                     
                     <div class="form-group">
                         <label class="form-label">Quantity (Shares)</label>
-                        <input type="number" class="form-input" id="trade-quantity" placeholder="Enter quantity" value="10" min="1" onchange="updateTradePreview()">
+                        <input type="number" class="form-input" id="trade-quantity" placeholder="Enter quantity" value="10" min="1" >
                     </div>
                     
                     <div class="flex gap-sm" style="background: rgba(0,217,255,0.05); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
@@ -188,7 +189,7 @@
                         </div>
                     </div>
                     
-                    <button class="btn btn-primary" id="execute-trade-btn" style="width: 100%; font-size: 1.1rem;" onclick="executeDemoTrade()">
+                    <button class="btn btn-primary" id="execute-trade-btn" style="width: 100%; font-size: 1.1rem;" >
                         Buy with Virtual Money
                     </button>
                     <p style="font-size: 0.75rem; color: #555; text-align: center; margin-top: 0.5rem;">
