@@ -11,15 +11,15 @@
    =================================== */
 :root {
     /* Backgrounds */
-    --primary-bg:    #faf9f6;
-    --secondary-bg:  #f2f0ea;
-    --card-bg:       #ffffff;
+    --primary-bg:    #ffffff;
+    --secondary-bg:  #ffffff;
+    --card-bg:       #3a5a40;
     --glass-bg:      rgba(255, 255, 255, 0.85);
 
     /* Text */
-    --text-primary:   #333333;
-    --text-secondary: #555555;
-    --text-muted:     #777777;
+    --text-primary:   #ffffff;
+    --text-secondary: #ffffff;
+    --text-muted:     #f7f6f6;
 
     /* Accent / Brand */
     --neon-cyan:       #4a5d4e;
@@ -82,15 +82,15 @@
    =================================== */
 [data-theme="dark"] {
     /* Backgrounds — matte, deep, no pure black */
-    --primary-bg:   #141414;
+    --primary-bg:   #000000;
     --secondary-bg: #1c1c1c;
     --card-bg:      #212121;
     --glass-bg:     rgba(33, 33, 33, 0.90);
 
     /* Text — soft, not harsh white */
-    --text-primary:   #dcdcdc;
-    --text-secondary: #999999;
-    --text-muted:     #666666;
+    --text-primary:   #fcfcfc;
+    --text-secondary: #ffffff;
+    --text-muted:     #ffffff;
 
     /* Accents — muted, earthy, no neon */
     --neon-cyan:       #7aaa82;
@@ -130,7 +130,7 @@
 
 /* Smooth theme transitions */
 *, *::before, *::after {
-    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+    transition: background-color 1s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* ===================================
@@ -150,7 +150,7 @@ html {
 body {
     font-family: var(--font-body);
     background: var(--primary-bg);
-    color: var(--text-primary);
+    color:#fcfcfc;
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
@@ -165,8 +165,8 @@ body::before {
     width: 100%;
     height: 100%;
     background:
-        radial-gradient(circle at 20% 30%, rgba(74, 93, 78, 0.04) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(109, 138, 116, 0.06) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(76, 106, 83, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(63, 95, 71, 0.06) 0%, transparent 50%);
     background-color: var(--primary-bg);
     z-index: -1;
     animation: bgBreathe 18s ease-in-out infinite alternate;
@@ -372,8 +372,8 @@ a:hover {
    =================================== */
 .btn {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 650;
+    font-size: 0.8rem;
     padding: 0.8rem 1.8rem;
     border: none;
     border-radius: var(--border-radius);
@@ -390,13 +390,13 @@ a:hover {
 
 .btn-primary {
     background: var(--gradient-primary);
-    color: #ffffff;
+    color: #f8f3f3;
     box-shadow: var(--shadow-accent);
 }
 
 .btn-primary:hover {
     box-shadow: var(--shadow-accent-lg);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     color: #ffffff;
 }
 
