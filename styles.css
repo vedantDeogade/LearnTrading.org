@@ -13,13 +13,13 @@
     /* Backgrounds */
     --primary-bg:    #ffffff;
     --secondary-bg:  #ffffff;
-    --card-bg:       #3a5a40;
+    --card-bg:       #194521cd;
     --glass-bg:      rgba(255, 255, 255, 0.85);
 
-    /* Text */
-    --text-primary:   #ffffff;
-    --text-secondary: #ffffff;
-    --text-muted:     #f7f6f6;
+    /* Text — dark green tones for readability on white/light backgrounds */
+    --text-primary:   #034e0a;
+    --text-secondary: #fefefe;
+    --text-muted:     #4a6b4e;
 
     /* Accent / Brand */
     --neon-cyan:       #4a5d4e;
@@ -47,7 +47,7 @@
     /* Inputs */
     --input-bg:       rgba(240, 240, 240, 0.6);
     --input-bg-focus: rgba(240, 240, 240, 0.9);
-    --input-text:     #222222;
+    --input-text:     #1a2e1c;
 
     /* Typography */
     --font-display: 'Space Grotesk', sans-serif;
@@ -87,10 +87,10 @@
     --card-bg:      #212121;
     --glass-bg:     rgba(33, 33, 33, 0.90);
 
-    /* Text — soft, not harsh white */
-    --text-primary:   #fcfcfc;
-    --text-secondary: #ffffff;
-    --text-muted:     #ffffff;
+    /* Text — crisp white for readability on dark backgrounds */
+    --text-primary:   #ffffff;
+    --text-secondary: #f0f0f0;
+    --text-muted:     #c8c8c8;
 
     /* Accents — muted, earthy, no neon */
     --neon-cyan:       #7aaa82;
@@ -150,7 +150,7 @@ html {
 body {
     font-family: var(--font-body);
     background: var(--primary-bg);
-    color:#fcfcfc;
+    color: var(--text-primary); /* Fixed: was hardcoded #fcfcfc — now uses theme variable */
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
@@ -205,19 +205,19 @@ h2 {
 
 h3 {
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    color: var(--text-primary);
+    color:#e0e0e0;
     margin-bottom: var(--spacing-sm);
 }
 
 h4 {
     font-size: clamp(1rem, 2vw, 1.3rem);
-    color: var(--neon-cyan);
+    color:#ffffff;
     margin-bottom: var(--spacing-sm);
 }
 
 p {
     margin-bottom: var(--spacing-sm);
-    color: var(--text-secondary);
+    color:#ffffff;
     font-size: 1rem;
 }
 
@@ -289,11 +289,12 @@ a:hover {
     align-items: center;
 }
 
+/* Nav links: dark green in light mode, white in dark mode */
 .nav-links a {
     font-family: var(--font-body);
-    font-weight: 500;
-    font-size: 0.82rem;
-    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
@@ -372,8 +373,8 @@ a:hover {
    =================================== */
 .btn {
     font-family: var(--font-display);
-    font-weight: 650;
-    font-size: 0.8rem;
+    font-weight: 700;
+    font-size: 0.9rem;
     padding: 0.8rem 1.8rem;
     border: none;
     border-radius: var(--border-radius);
@@ -389,25 +390,28 @@ a:hover {
 }
 
 .btn-primary {
-    background: var(--gradient-primary);
-    color: #f8f3f3;
+    background: var(--neon-blue);
+    font-weight: 200;
+    color: #ffffff;
     box-shadow: var(--shadow-accent);
 }
 
 .btn-primary:hover {
     box-shadow: var(--shadow-accent-lg);
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     color: #ffffff;
 }
 
 .btn-secondary {
-    background: transparent;
-    border: 2px solid var(--neon-cyan);
+    background: #fff;
+    border: 6px solid var(--neon-cyan);
     color: var(--neon-cyan);
+    transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background: var(--neon-cyan);
+    background: rgb(254, 64, 64);
+    border-color: var(--neon-cyan);
     color: var(--primary-bg);
     box-shadow: var(--shadow-accent);
 }
@@ -415,7 +419,7 @@ a:hover {
 .btn-success {
     background: var(--gradient-success);
     color: #ffffff;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .btn-success:hover {
@@ -525,21 +529,23 @@ a:hover {
     text-align: center;
     padding: var(--spacing-md);
 }
-
+ #ste{
+    color: black;
+ }
 .stat-number {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 900;
+    color: #ffffff;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
     display: block;
     margin-bottom: var(--spacing-xs);
 }
 
 .stat-label {
-    font-size: 0.85rem;
+    font-size: 1.75rem;
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -612,6 +618,7 @@ a:hover {
     font-size: clamp(1.8rem, 4vw, 3rem);
     font-weight: 900;
     margin: var(--spacing-sm) 0;
+    color: #ffffff;
 }
 
 .profit-positive { color: var(--electric-green); }
@@ -636,6 +643,12 @@ a:hover {
     border-radius: var(--border-radius);
     padding: var(--spacing-md);
     position: relative;
+}
+
+/* Chart text color fix for both themes */
+.chart-container,
+.chart-container * {
+    color: var(--text-primary);
 }
 
 /* ===================================
@@ -698,9 +711,9 @@ a:hover {
 }
 
 .badge-success {
-    background: rgba(58, 90, 64, 0.18);
-    color: var(--electric-green);
-    border: 1px solid var(--electric-green);
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--primary-bg);
+    border: 1px solid var(--secondary-bg);
 }
 
 .badge-warning {
@@ -744,6 +757,7 @@ a:hover {
 
 .footer-links li { margin-bottom: var(--spacing-xs); }
 
+/* Footer link color: readable in both themes */
 .footer-links a {
     color: var(--text-muted);
     font-size: 0.92rem;
@@ -751,6 +765,7 @@ a:hover {
 
 .footer-links a:hover { color: var(--neon-cyan); }
 
+/* Footer bottom text: uses theme variable */
 .footer-bottom {
     text-align: center;
     padding-top: var(--spacing-md);
@@ -984,7 +999,7 @@ a:hover {
     content: '✓';
     position: absolute;
     left: 0;
-    color: var(--electric-green);
+    color:white;
     font-weight: 700;
 }
 
