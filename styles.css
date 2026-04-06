@@ -88,9 +88,9 @@
     --glass-bg:     rgba(33, 33, 33, 0.90);
 
     /* Text — crisp white for readability on dark backgrounds */
-    --text-primary:   #ffffff;
-    --text-secondary: #f0f0f0;
-    --text-muted:     #c8c8c8;
+    --text-primary:   white;
+    --text-secondary: white;
+    --text-muted:     white;
 
     /* Accents — muted, earthy, no neon */
     --neon-cyan:       #7aaa82;
