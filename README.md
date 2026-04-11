@@ -10,7 +10,6 @@ The goal of Learntrading.org is to make trading education interactive by combini
 - 🧠 Trading Learning Modules
 - ❓ Interactive Quizzes on Trading Concepts
 - 📚 Case Studies on Market Scenarios
-- 👤 User Account System
 - 🧾 Trade History Dashboard
 - 🎓 Beginner-friendly UI for learning trading
 ### Tech Stack
@@ -33,8 +32,8 @@ APIs:
 5. The system tracks the portfolio and trade history.
 6. Users can also access learning materials, quizzes, and case studies to improve their trading knowledge.
 ## Future Improvements
+- May conver to a Real trading platform
 - AI-based trading suggestions
 - Real-time market data
-- Leaderboard for traders
 - Advanced chart analysis tools
 
