@@ -1086,7 +1086,7 @@ a:hover {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(8px);
     z-index: 10001;
     display: flex;
@@ -1104,7 +1104,8 @@ a:hover {
 }
 
 .auth-modal {
-    background: var(--card-bg);
+    background: rgba(57, 53, 53, 0.229);
+    backdrop-filter: blur(10px);  
     border-radius: 24px;
     width: 100%;
     max-width: 440px;
@@ -1130,7 +1131,7 @@ a:hover {
     border-radius: 50%;
     border: 1px solid var(--border-color);
     background: var(--input-bg);
-    color: var(--text-secondary);
+    color: var(white);
     font-size: 1.2rem;
     cursor: pointer;
     display: flex;
@@ -1160,7 +1161,7 @@ a:hover {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    color: var(--text-muted);
+    color: white;
     background: none;
     border: none;
     cursor: pointer;
@@ -1180,9 +1181,9 @@ a:hover {
     transition: background 0.25s ease;
 }
 
-.auth-tab.active { color: var(--neon-cyan); }
-.auth-tab.active::after { background: var(--gradient-primary); }
-.auth-tab:hover:not(.active) { color: var(--text-secondary); }
+.auth-tab.active { color:white }
+.auth-tab.active::after { background: white }
+.auth-tab:hover:not(.active) { color: white }
 
 .auth-form { padding: 1.8rem 2rem 2.2rem; }
 
@@ -1196,13 +1197,13 @@ a:hover {
 
 .auth-brand h2 {
     font-size: 1.5rem;
-    color: var(--neon-cyan);
+    color: white
     margin-bottom: 0.3rem;
 }
 
 .auth-brand p {
     font-size: 0.88rem;
-    color: var(--text-muted);
+    color: white;
     margin: 0;
 }
 
@@ -1213,7 +1214,7 @@ a:hover {
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 0.8rem;
-    color: var(--neon-cyan);
+    color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 0.4rem;
@@ -1227,14 +1228,14 @@ a:hover {
     border-radius: 10px;
     font-family: var(--font-body);
     font-size: 0.95rem;
-    color: var(--input-text);
+    color: white;
     transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .auth-field input:focus {
     outline: none;
     border-color: var(--neon-cyan);
-    box-shadow: 0 0 0 3px rgba(74, 93, 78, 0.12);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.12);
     background: var(--input-bg-focus);
 }
 
@@ -1260,12 +1261,12 @@ a:hover {
 }
 
 .auth-remember input[type="checkbox"] {
-    accent-color: var(--neon-cyan);
+    accent-color:white;
     width: 15px;
     height: 15px;
 }
 
-.auth-forgot { color: var(--neon-cyan); font-weight: 500; }
+.auth-forgot { color: white; font-weight: 500; }
 .auth-forgot:hover { text-decoration: underline; }
 
 .auth-submit-btn {
@@ -1309,7 +1310,7 @@ a:hover {
 
 .auth-divider span {
     font-size: 0.78rem;
-    color: var(--text-muted);
+    color:white;
     text-transform: uppercase;
     letter-spacing: 1px;
     white-space: nowrap;
@@ -1344,12 +1345,12 @@ a:hover {
 .auth-footer-text {
     text-align: center;
     font-size: 0.86rem;
-    color: var(--text-muted);
+    color: white;
     margin-top: 1.4rem;
     margin-bottom: 0;
 }
 
-.auth-footer-text a { color: var(--neon-cyan); font-weight: 600; }
+.auth-footer-text a { color: white; font-weight: 600; }
 .auth-footer-text a:hover { text-decoration: underline; }
 
 /* ===================================
