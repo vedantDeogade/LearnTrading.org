@@ -16,6 +16,8 @@ The goal of Learntrading.org is to make trading education interactive by combini
 Frontend:
 - HTML
 - CSS
+- Tailwind CSS
+- React.js
 - JavaScript
 - Chart.js for stock graphs
 Backend:
