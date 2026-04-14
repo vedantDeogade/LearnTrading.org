@@ -788,5 +788,271 @@ document.addEventListener('DOMContentLoaded', function() {
             quickSell(symbol, qty);
         }
     });
+
+    // ============================================
+    // TERMINAL UI ENHANCEMENTS
+    // ============================================
+
+    // ----- Bottom Panel Tabs -----
+    const bottomTabs = document.querySelectorAll('.bottom-tab[data-panel]');
+    const bottomPanels = document.querySelectorAll('.bottom-panel-content');
+    
+    bottomTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const panelId = this.getAttribute('data-panel');
+            bottomTabs.forEach(t => t.classList.remove('active'));
+            bottomPanels.forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+            const target = document.getElementById('panel-' + panelId);
+            if (target) target.classList.add('active');
+        });
+    });
+
+    // ----- Bottom Panel Toggle (Collapse/Expand) -----
+    const bottomPanelToggle = document.getElementById('bottom-panel-toggle');
+    const bottomPanel = document.querySelector('.bottom-panel');
+    if (bottomPanelToggle && bottomPanel) {
+        bottomPanelToggle.addEventListener('click', function() {
+            bottomPanel.classList.toggle('collapsed');
+        });
+    }
+
+    // ----- Watchlist Click → Select Stock -----
+    const watchlistItems = document.querySelectorAll('.watchlist-item[data-symbol]');
+    watchlistItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const symbol = this.getAttribute('data-symbol');
+            const tvSymbol = this.getAttribute('data-tv');
+            
+            // Update active state
+            watchlistItems.forEach(w => w.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Update trade-asset dropdown
+            const assetSelect = document.getElementById('trade-asset');
+            if (assetSelect) {
+                assetSelect.value = symbol;
+                updateTradePreview();
+            }
+            
+            // Update chart toolbar info
+            const chartSymbol = document.getElementById('chart-active-symbol');
+            const chartPrice = document.getElementById('chart-active-price');
+            if (chartSymbol) chartSymbol.textContent = tvSymbol || symbol;
+            if (chartPrice && stockPrices[symbol]) {
+                chartPrice.textContent = formatINR(stockPrices[symbol].price);
+            }
+            
+            // Update execute button text
+            updateExecuteButtonText();
+        });
+    });
+
+    // ----- Watchlist Search Filter -----
+    const watchlistSearchInput = document.getElementById('watchlist-search-input');
+    if (watchlistSearchInput) {
+        watchlistSearchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            watchlistItems.forEach(item => {
+                const symbol = item.getAttribute('data-symbol').toLowerCase();
+                const name = item.querySelector('.watchlist-name');
+                const nameText = name ? name.textContent.toLowerCase() : '';
+                item.style.display = (symbol.includes(query) || nameText.includes(query)) ? '' : 'none';
+            });
+        });
+    }
+
+    // ----- Sidebar Collapse -----
+    const collapseBtn = document.getElementById('watchlist-collapse-btn');
+    const sidebar = document.getElementById('watchlist-sidebar');
+    if (collapseBtn && sidebar) {
+        collapseBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('collapsed');
+        });
+    }
+
+    // ----- Sidebar Mobile Toggle -----
+    const sidebarMobileToggle = document.getElementById('sidebar-mobile-toggle');
+    if (sidebarMobileToggle && sidebar) {
+        sidebarMobileToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('mobile-open');
+        });
+    }
+
+    // ----- Quantity Stepper (+/-) -----
+    const qtyMinus = document.getElementById('qty-minus');
+    const qtyPlus = document.getElementById('qty-plus');
+    const qtyInput = document.getElementById('trade-quantity');
+    
+    if (qtyMinus && qtyInput) {
+        qtyMinus.addEventListener('click', function() {
+            const v = parseInt(qtyInput.value) || 1;
+            qtyInput.value = Math.max(1, v - 1);
+            updateTradePreview();
+            updateQuickQtyActive();
+        });
+    }
+    if (qtyPlus && qtyInput) {
+        qtyPlus.addEventListener('click', function() {
+            const v = parseInt(qtyInput.value) || 0;
+            qtyInput.value = v + 1;
+            updateTradePreview();
+            updateQuickQtyActive();
+        });
+    }
+
+    // ----- Quick Qty Buttons -----
+    const quickQtyBtns = document.querySelectorAll('.qty-quick[data-qty]');
+    quickQtyBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const qty = parseInt(this.getAttribute('data-qty'));
+            if (qtyInput) {
+                qtyInput.value = qty;
+                updateTradePreview();
+            }
+            quickQtyBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // ----- Order Mode Tabs (Market/Limit/SL) -----
+    const orderModeBtns = document.querySelectorAll('.order-mode-btn[data-mode]');
+    orderModeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            orderModeBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    // ----- Chart Timeframe Selector -----
+    const timeframeBtns = document.querySelectorAll('.chart-timeframe[data-tf]');
+    timeframeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            timeframeBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
 });
 
+// ── Terminal Helper Functions ──
+
+function updateQuickQtyActive() {
+    const qtyInput = document.getElementById('trade-quantity');
+    const quickQtyBtns = document.querySelectorAll('.qty-quick[data-qty]');
+    if (!qtyInput) return;
+    const currentQty = parseInt(qtyInput.value);
+    quickQtyBtns.forEach(btn => {
+        const btnQty = parseInt(btn.getAttribute('data-qty'));
+        btn.classList.toggle('active', btnQty === currentQty);
+    });
+}
+
+function updateExecuteButtonText() {
+    const executeBtn = document.getElementById('execute-trade-btn');
+    const assetSelect = document.getElementById('trade-asset');
+    if (!executeBtn || !assetSelect) return;
+    const symbol = assetSelect.value;
+    const action = tradeType === 'buy' ? 'BUY' : 'SELL';
+    executeBtn.textContent = `${action} ${symbol}`;
+}
+
+// Override selectTradeType for terminal UI styling
+const _origSelectTradeType = selectTradeType;
+selectTradeType = function(type) {
+    tradeType = type;
+    const buyBtn = document.getElementById('btn-buy');
+    const sellBtn = document.getElementById('btn-sell');
+    const executeBtn = document.getElementById('execute-trade-btn');
+    if (!buyBtn || !sellBtn || !executeBtn) return;
+
+    if (type === 'buy') {
+        buyBtn.classList.add('active');
+        sellBtn.classList.remove('active');
+        executeBtn.className = 'order-execute-btn order-execute-buy';
+    } else {
+        buyBtn.classList.remove('active');
+        sellBtn.classList.add('active');
+        executeBtn.className = 'order-execute-btn order-execute-sell';
+    }
+    updateExecuteButtonText();
+};
+
+// Update margin bar based on trade value vs available cash
+const _origUpdateTradePreview = updateTradePreview;
+updateTradePreview = function() {
+    _origUpdateTradePreview();
+    
+    const marginFill = document.getElementById('margin-bar-fill');
+    const marginReq = document.getElementById('margin-required');
+    const totalDisplay = document.getElementById('trade-total-display');
+    if (!marginFill || !totalDisplay) return;
+    
+    const account = getAccount();
+    const assetSelect = document.getElementById('trade-asset');
+    const quantityEl = document.getElementById('trade-quantity');
+    if (!assetSelect || !quantityEl) return;
+    
+    const quantity = parseInt(quantityEl.value) || 0;
+    const selectedOption = assetSelect.options[assetSelect.selectedIndex];
+    const price = parseFloat(selectedOption.getAttribute('data-price'));
+    const total = price * quantity;
+    
+    const usagePercent = Math.min(100, (total / account.balance) * 100);
+    marginFill.style.width = usagePercent + '%';
+    
+    if (marginReq) marginReq.textContent = formatINR(total);
+    
+    // Color the margin bar based on usage
+    if (usagePercent > 80) {
+        marginFill.style.background = 'linear-gradient(90deg, #ef4444, #dc2626)';
+    } else if (usagePercent > 50) {
+        marginFill.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+    } else {
+        marginFill.style.background = 'linear-gradient(90deg, #22c55e, #3b82f6)';
+    }
+    
+    updateExecuteButtonText();
+};
+
+// Update watchlist prices from simulated data
+const _origSimulatePriceChange = simulatePriceChange;
+simulatePriceChange = function() {
+    _origSimulatePriceChange();
+    
+    // Update watchlist items
+    const watchlistItems = document.querySelectorAll('.watchlist-item[data-symbol]');
+    watchlistItems.forEach(item => {
+        const symbol = item.getAttribute('data-symbol');
+        if (stockPrices[symbol]) {
+            const priceEl = item.querySelector('.watchlist-price');
+            const changeEl = item.querySelector('.watchlist-change');
+            if (priceEl) priceEl.textContent = formatINR(stockPrices[symbol].price);
+            if (changeEl) {
+                const change = ((Math.random() - 0.45) * 4).toFixed(2);
+                const isPositive = parseFloat(change) >= 0;
+                changeEl.textContent = (isPositive ? '+' : '') + change + '%';
+                changeEl.className = 'watchlist-change ' + (isPositive ? 'positive' : 'negative');
+            }
+        }
+    });
+    
+    // Update chart toolbar active price
+    const activeItem = document.querySelector('.watchlist-item.active');
+    if (activeItem) {
+        const symbol = activeItem.getAttribute('data-symbol');
+        const chartPrice = document.getElementById('chart-active-price');
+        const chartChange = document.getElementById('chart-active-change');
+        if (chartPrice && stockPrices[symbol]) {
+            chartPrice.textContent = formatINR(stockPrices[symbol].price);
+        }
+        if (chartChange) {
+            const changeEl = activeItem.querySelector('.watchlist-change');
+            if (changeEl) {
+                chartChange.textContent = changeEl.textContent;
+                chartChange.className = 'chart-active-change ' + 
+                    (changeEl.classList.contains('positive') ? 'positive' : 'negative');
+            }
+        }
+    }
+};
