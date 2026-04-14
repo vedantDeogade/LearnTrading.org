@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo Trading Dashboard - LearnTrading.org</title>
-    <meta name="description" content="Practice stock market trading with virtual money. Live charts, demo buy/sell, and portfolio tracking.">
+    <title>Trading Terminal - LearnTrading.org</title>
+    <meta name="description" content="Professional paper trading terminal. Practice stock trading with virtual money, live charts, and realistic order execution.">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="terminal-page">
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -22,11 +22,10 @@
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><button class="theme-toggle-btn" style="background:none; border:none; font-size:1.5rem; cursor:pointer; padding: 0.5rem;" aria-label="Toggle Dark Mode">🌙</button></li>
-                <li><a href="dashboard.html" class="active">Dashboard</a></li>
-                <li><a href="#markets-section">Markets</a></li>
-                <li><a href="#portfolio-section">Portfolio</a></li>
-                <li><a href="#history-section">History</a></li>
-                <li><a href="index.html" class="btn btn-secondary">Home</a></li>
+                <li><a href="dashboard.html" class="active">Terminal</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
             </ul>
         </div>
     </nav>
@@ -52,226 +51,383 @@
                 "showSymbolLogo": true,
                 "isTransparent": true,
                 "displayMode": "adaptive",
-                "colorTheme": "light",
+                "colorTheme": "dark",
                 "locale": "en"
             }
             </script>
         </div>
     </div>
 
-    <!-- Dashboard Header -->
-    <div class="dashboard-header dashboard-with-ticker">
-        <div class="container">
-            <!-- Demo Banner -->
-            <div class="demo-banner">
-                <span>🎓 Demo Trading Account All trades use virtual money. No real funds involved.</span>
+    <!-- ═══════════ ACCOUNT SUMMARY BAR ═══════════ -->
+    <div class="account-bar dashboard-with-ticker">
+        <div class="account-bar-inner">
+            <div class="account-bar-left">
+                <div class="account-bar-label">
+                    <span class="paper-badge">PAPER TRADING</span>
+                    <span class="account-bar-welcome">Demo Account</span>
+                </div>
             </div>
-            <div class="flex-between" style="align-items: center;">
-                <div>
-                    <h2 style="margin: 0; display: flex; align-items: center; gap: 1rem;">
-                        Welcome, Trader 
-                        <span class="demo-badge">DEMO MODE</span>
-                    </h2>
-                    <p style="margin: 0; color: #555;">Practice trading with virtual money — zero real risk</p>
+            <div class="account-bar-stats">
+                <div class="account-stat">
+                    <span class="account-stat-label">Equity</span>
+                    <span class="account-stat-value" id="total-balance">₹10,00,000</span>
                 </div>
-                <div class="flex gap-sm">
-                    <button class="btn btn-success" id="reset-account-btn">Reset Demo Account</button>
+                <div class="account-stat-divider"></div>
+                <div class="account-stat">
+                    <span class="account-stat-label">P&L</span>
+                    <span class="account-stat-value profit-positive" id="total-pnl">₹0.00 (0.00%)</span>
                 </div>
+                <div class="account-stat-divider"></div>
+                <div class="account-stat">
+                    <span class="account-stat-label">Available Margin</span>
+                    <span class="account-stat-value" id="available-cash">₹10,00,000</span>
+                </div>
+                <div class="account-stat-divider"></div>
+                <div class="account-stat">
+                    <span class="account-stat-label">Used Margin</span>
+                    <span class="account-stat-value" id="in-positions">₹0.00</span>
+                </div>
+                <div class="account-stat-divider"></div>
+                <div class="account-stat">
+                    <span class="account-stat-label">Trades</span>
+                    <span class="account-stat-value" id="total-trades">0</span>
+                </div>
+            </div>
+            <div class="account-bar-right">
+                <button class="terminal-btn terminal-btn-outline" id="reset-account-btn" title="Reset Demo Account">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                    Reset
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- Main Dashboard Content -->
-    <section class="section">
-        <div class="container">
-            <!-- Balance Cards -->
-            <div class="grid-4">
-                <div class="card balance-card">
-                    <p style="opacity: 0.9; margin-bottom: 0.5rem;">Virtual Balance</p>
-                    <div class="balance-amount virtual-balance" id="total-balance">₹10,00,000</div>
-                    <p id="total-pnl" class="profit-positive" style="font-weight: 600; font-size: 1.1rem;">
-                        ₹0.00 (0.00%) P&L
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <p style="color: #555; margin-bottom: 0.5rem;">Available Cash</p>
-                    <h3 id="available-cash" style="font-size: 2rem; margin: 0.5rem 0;">₹10,00,000</h3>
-                    <span class="badge badge-success">Ready to Trade</span>
-                </div>
-                
-                <div class="card">
-                    <p style="color: #555; margin-bottom: 0.5rem;">In Positions</p>
-                    <h3 id="in-positions" style="font-size: 2rem; margin: 0.5rem 0;">₹0.00</h3>
-                    <span class="badge badge-info" id="active-trades-count">0 Active Trades</span>
-                </div>
-                
-                <div class="card">
-                    <p style="color: #555; margin-bottom: 0.5rem;">Total Trades Made</p>
-                    <h3 id="total-trades" style="font-size: 2rem; margin: 0.5rem 0;">0</h3>
-                    <span class="badge badge-info">Lifetime</span>
-                </div>
+    <!-- ═══════════ MAIN TERMINAL WORKSPACE ═══════════ -->
+    <div class="terminal-layout" id="markets-section">
+
+        <!-- ──── LEFT: WATCHLIST SIDEBAR ──── -->
+        <aside class="watchlist-sidebar" id="watchlist-sidebar">
+            <div class="watchlist-header">
+                <h3 class="watchlist-title">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+                    Watchlist
+                </h3>
+                <button class="watchlist-collapse-btn" id="watchlist-collapse-btn" title="Collapse">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
             </div>
-
-            <!-- Main Trading Interface -->
-            <div class="grid-2" style="margin-top: 2rem; align-items: start;" id="markets-section">
-                <!-- Live Chart -->
-                <div class="card" style="grid-row: span 2;">
-                    <div class="flex-between" style="margin-bottom: 1rem;">
-                        <h3 style="margin: 0;">Live Market Chart</h3>
-                        <div class="demo-badge">📊 Real-Time Data</div>
+            <div class="watchlist-search">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" placeholder="Search stocks..." id="watchlist-search-input" class="watchlist-search-input">
+            </div>
+            <div class="watchlist-list" id="watchlist-list">
+                <div class="watchlist-item active" data-symbol="RELIANCE" data-tv="NSE:RELIANCE">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">RELIANCE</span>
+                        <span class="watchlist-name">Reliance Ind.</span>
                     </div>
-                    
-                    <div class="chart-widget-container" style="height: 500px;">
-                        <div class="tradingview-widget-container" style="height: 100%;">
-                            <div id="tradingview-dashboard-chart" style="height: 100%;"></div>
-                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-                            {
-                                "autosize": true,
-                                "symbol": "NSE:RELIANCE",
-                                "interval": "15",
-                                "timezone": "Asia/Kolkata",
-                                "theme": "light",
-                                "style": "1",
-                                "locale": "en",
-                                "backgroundColor": "rgba(255, 255, 255, 0.9)",
-                                "gridColor": "rgba(74, 93, 78, 0.1)",
-                                "allow_symbol_change": true,
-                                "calendar": false,
-                                "studies": ["RSI@tv-basicstudies", "MASimple@tv-basicstudies"],
-                                "support_host": "https://www.tradingview.com"
-                            }
-                            </script>
-                        </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹2,890.50</span>
+                        <span class="watchlist-change positive">+1.24%</span>
                     </div>
                 </div>
-
-                <!-- Quick Demo Trade Panel -->
-                <div class="card">
-                    <h3>Demo Trade</h3>
-                    <p style="font-size: 0.85rem; color: #555; margin-bottom: 1rem;">
-                        Practice buying and selling with virtual money
-                    </p>
-                    <div class="flex gap-sm" style="margin-bottom: 1.5rem;">
-                        <button class="btn btn-success" id="btn-buy" style="flex: 1;" >BUY</button>
-                        <button class="btn btn-danger" id="btn-sell" style="flex: 1;" >SELL</button>
+                <div class="watchlist-item" data-symbol="TCS" data-tv="NSE:TCS">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">TCS</span>
+                        <span class="watchlist-name">Tata Consultancy</span>
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Stock / Asset</label>
-                        <select class="form-select" id="trade-asset" >
-                            <option value="RELIANCE" data-price="2890.50">RELIANCE - Reliance Industries</option>
-                            <option value="TCS" data-price="3950.75">TCS - Tata Consultancy Services</option>
-                            <option value="INFY" data-price="1685.30">INFY - Infosys</option>
-                            <option value="HDFCBANK" data-price="1620.45">HDFCBANK - HDFC Bank</option>
-                            <option value="ICICIBANK" data-price="1245.80">ICICIBANK - ICICI Bank</option>
-                            <option value="WIPRO" data-price="542.15">WIPRO - Wipro</option>
-                            <option value="SBIN" data-price="785.60">SBIN - State Bank of India</option>
-                            <option value="TATAMOTORS" data-price="945.30">TATAMOTORS - Tata Motors</option>
-                            <option value="ADANIENT" data-price="2340.90">ADANIENT - Adani Enterprises</option>
-                            <option value="ITC" data-price="465.20">ITC - ITC Limited</option>
-                        </select>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹3,950.75</span>
+                        <span class="watchlist-change positive">+0.87%</span>
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Quantity (Shares)</label>
-                        <input type="number" class="form-input" id="trade-quantity" placeholder="Enter quantity" value="10" min="1" >
-                    </div>
-                    
-                    <div class="flex gap-sm" style="background: rgba(0,217,255,0.05); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
-                        <div style="flex: 1;">
-                            <p style="font-size: 0.85rem; margin: 0; color: #555;">Price per share</p>
-                            <p id="trade-price-display" style="font-size: 1.1rem; margin: 0; font-weight: 600;">₹2,890.50</p>
-                        </div>
-                        <div style="flex: 1;">
-                            <p style="font-size: 0.85rem; margin: 0; color: #555;">Total Cost</p>
-                            <p id="trade-total-display" style="font-size: 1.1rem; margin: 0; font-weight: 600;">₹28,905.00</p>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-primary" id="execute-trade-btn" style="width: 100%; font-size: 1.1rem;" >
-                        Buy with Virtual Money
-                    </button>
-                    <p style="font-size: 0.75rem; color: #555; text-align: center; margin-top: 0.5rem;">
-                        ⚠️ This is a demo trade. No real money is used.
-                    </p>
                 </div>
-
-                <!-- Market Overview Widget -->
-                <div class="card">
-                    <h3>Market Overview</h3>
-                    <div class="tradingview-widget-container">
-                        <div class="tradingview-widget-container__widget"></div>
-                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-                        {
-                            "colorTheme": "light",
-                            "dateRange": "1D",
-                            "showChart": true,
-                            "locale": "en",
-                            "width": "100%",
-                            "height": "400",
-                            "largeChartUrl": "",
-                            "isTransparent": true,
-                            "showSymbolLogo": true,
-                            "showFloatingTooltip": true,
-                            "tabs": [
-                                {
-                                    "title": "Indian Stocks",
-                                    "symbols": [
-                                        {"s": "NSE:RELIANCE", "d": "Reliance"},
-                                        {"s": "NSE:TCS", "d": "TCS"},
-                                        {"s": "NSE:INFY", "d": "Infosys"},
-                                        {"s": "NSE:HDFCBANK", "d": "HDFC Bank"},
-                                        {"s": "NSE:ICICIBANK", "d": "ICICI Bank"}
-                                    ],
-                                    "originalTitle": "Indian Stocks"
-                                },
-                                {
-                                    "title": "Crypto",
-                                    "symbols": [
-                                        {"s": "BITSTAMP:BTCUSD", "d": "Bitcoin"},
-                                        {"s": "BITSTAMP:ETHUSD", "d": "Ethereum"},
-                                        {"s": "BINANCE:SOLUSDT", "d": "Solana"},
-                                        {"s": "BINANCE:ADAUSDT", "d": "Cardano"}
-                                    ],
-                                    "originalTitle": "Crypto"
-                                },
-                                {
-                                    "title": "Indices",
-                                    "symbols": [
-                                        {"s": "NSE:NIFTY", "d": "Nifty 50"},
-                                        {"s": "BSE:SENSEX", "d": "Sensex"},
-                                        {"s": "FOREXCOM:SPXUSD", "d": "S&P 500"},
-                                        {"s": "FOREXCOM:NSXUSD", "d": "Nasdaq"}
-                                    ],
-                                    "originalTitle": "Indices"
-                                }
-                            ]
-                        }
-                        </script>
+                <div class="watchlist-item" data-symbol="INFY" data-tv="NSE:INFY">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">INFY</span>
+                        <span class="watchlist-name">Infosys</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹1,685.30</span>
+                        <span class="watchlist-change negative">-0.45%</span>
+                    </div>
+                </div>
+                <div class="watchlist-item" data-symbol="HDFCBANK" data-tv="NSE:HDFCBANK">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">HDFCBANK</span>
+                        <span class="watchlist-name">HDFC Bank</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹1,620.45</span>
+                        <span class="watchlist-change positive">+0.63%</span>
+                    </div>
+                </div>
+                <div class="watchlist-item" data-symbol="ICICIBANK" data-tv="NSE:ICICIBANK">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">ICICIBANK</span>
+                        <span class="watchlist-name">ICICI Bank</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹1,245.80</span>
+                        <span class="watchlist-change negative">-0.32%</span>
+                    </div>
+                </div>
+                <div class="watchlist-item" data-symbol="WIPRO" data-tv="NSE:WIPRO">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">WIPRO</span>
+                        <span class="watchlist-name">Wipro</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹542.15</span>
+                        <span class="watchlist-change positive">+0.98%</span>
+                    </div>
+                </div>
+                <div class="watchlist-item" data-symbol="SBIN" data-tv="NSE:SBIN">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">SBIN</span>
+                        <span class="watchlist-name">State Bank</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹785.60</span>
+                        <span class="watchlist-change positive">+1.12%</span>
+                    </div>
+                </div>
+                <div class="watchlist-item" data-symbol="TATAMOTORS" data-tv="NSE:TATAMOTORS">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">TATAMOTORS</span>
+                        <span class="watchlist-name">Tata Motors</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹945.30</span>
+                        <span class="watchlist-change negative">-0.71%</span>
+                    </div>
+                </div>
+                <div class="watchlist-item" data-symbol="ADANIENT" data-tv="NSE:ADANIENT">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">ADANIENT</span>
+                        <span class="watchlist-name">Adani Ent.</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹2,340.90</span>
+                        <span class="watchlist-change positive">+2.15%</span>
+                    </div>
+                </div>
+                <div class="watchlist-item" data-symbol="ITC" data-tv="NSE:ITC">
+                    <div class="watchlist-item-info">
+                        <span class="watchlist-symbol">ITC</span>
+                        <span class="watchlist-name">ITC Limited</span>
+                    </div>
+                    <div class="watchlist-item-price">
+                        <span class="watchlist-price">₹465.20</span>
+                        <span class="watchlist-change positive">+0.54%</span>
                     </div>
                 </div>
             </div>
+            <!-- Market Indices Mini -->
+            <div class="watchlist-indices">
+                <div class="index-mini">
+                    <span class="index-name">NIFTY 50</span>
+                    <span class="index-value positive">22,456.80 <small>+0.92%</small></span>
+                </div>
+                <div class="index-mini">
+                    <span class="index-name">SENSEX</span>
+                    <span class="index-value positive">73,890.15 <small>+0.85%</small></span>
+                </div>
+            </div>
+        </aside>
 
-            <!-- Open Positions (Portfolio) -->
-            <div class="card" style="margin-top: 2rem;" id="portfolio-section">
-                <div class="flex-between" style="margin-bottom: 1rem;">
-                    <h3 style="margin: 0;">Your Virtual Portfolio</h3>
-                    <span class="demo-badge">DEMO POSITIONS</span>
+        <!-- Mobile Sidebar Toggle -->
+        <button class="sidebar-mobile-toggle" id="sidebar-mobile-toggle" title="Toggle Watchlist">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+        </button>
+
+        <!-- ──── CENTER: CHART AREA ──── -->
+        <main class="chart-center">
+            <div class="chart-toolbar">
+                <div class="chart-toolbar-left">
+                    <span class="chart-active-symbol" id="chart-active-symbol">NSE:RELIANCE</span>
+                    <span class="chart-active-price" id="chart-active-price">₹2,890.50</span>
+                    <span class="chart-active-change positive" id="chart-active-change">+1.24%</span>
                 </div>
-                <div id="positions-empty" style="text-align: center; padding: 3rem; color: #555;">
-                    <p style="font-size: 2rem; margin-bottom: 0.5rem;">📊</p>
-                    <p style="font-size: 1.1rem;">No open positions yet</p>
-                    <p>Use the Demo Trade panel above to buy your first stock with virtual money!</p>
+                <div class="chart-toolbar-right">
+                    <span class="chart-timeframe active" data-tf="1">1m</span>
+                    <span class="chart-timeframe" data-tf="5">5m</span>
+                    <span class="chart-timeframe" data-tf="15">15m</span>
+                    <span class="chart-timeframe" data-tf="60">1H</span>
+                    <span class="chart-timeframe" data-tf="D">1D</span>
+                    <span class="chart-timeframe" data-tf="W">1W</span>
                 </div>
-                <table class="data-table" id="positions-table" style="display: none;">
+            </div>
+            <div class="chart-widget-container" id="chart-widget-area">
+                <div class="tradingview-widget-container" style="height: 100%;">
+                    <div id="tradingview-dashboard-chart" style="height: 100%;"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                    {
+                        "autosize": true,
+                        "symbol": "NSE:RELIANCE",
+                        "interval": "15",
+                        "timezone": "Asia/Kolkata",
+                        "theme": "dark",
+                        "style": "1",
+                        "locale": "en",
+                        "backgroundColor": "rgba(13, 13, 15, 1)",
+                        "gridColor": "rgba(42, 46, 57, 0.4)",
+                        "allow_symbol_change": true,
+                        "calendar": false,
+                        "hide_top_toolbar": false,
+                        "hide_legend": false,
+                        "save_image": false,
+                        "studies": ["RSI@tv-basicstudies", "MASimple@tv-basicstudies"],
+                        "support_host": "https://www.tradingview.com"
+                    }
+                    </script>
+                </div>
+            </div>
+        </main>
+
+        <!-- ──── RIGHT: ORDER PANEL ──── -->
+        <aside class="order-panel" id="order-panel">
+            <div class="order-panel-header">
+                <h3 class="order-panel-title">Place Order</h3>
+                <span class="order-demo-tag">VIRTUAL</span>
+            </div>
+
+            <!-- BUY / SELL Tabs -->
+            <div class="order-type-selector">
+                <button class="order-type-btn order-buy active" id="btn-buy">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    BUY
+                </button>
+                <button class="order-type-btn order-sell" id="btn-sell">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+                    SELL
+                </button>
+            </div>
+
+            <!-- Order Form -->
+            <div class="order-form">
+                <!-- Order Mode: Market / Limit -->
+                <div class="order-mode-tabs">
+                    <button class="order-mode-btn active" data-mode="market">Market</button>
+                    <button class="order-mode-btn" data-mode="limit">Limit</button>
+                    <button class="order-mode-btn" data-mode="sl">SL</button>
+                </div>
+
+                <!-- Stock Selection -->
+                <div class="order-field">
+                    <label class="order-label">Instrument</label>
+                    <select class="order-select" id="trade-asset">
+                        <option value="RELIANCE" data-price="2890.50">RELIANCE - Reliance Industries</option>
+                        <option value="TCS" data-price="3950.75">TCS - Tata Consultancy Services</option>
+                        <option value="INFY" data-price="1685.30">INFY - Infosys</option>
+                        <option value="HDFCBANK" data-price="1620.45">HDFCBANK - HDFC Bank</option>
+                        <option value="ICICIBANK" data-price="1245.80">ICICIBANK - ICICI Bank</option>
+                        <option value="WIPRO" data-price="542.15">WIPRO - Wipro</option>
+                        <option value="SBIN" data-price="785.60">SBIN - State Bank of India</option>
+                        <option value="TATAMOTORS" data-price="945.30">TATAMOTORS - Tata Motors</option>
+                        <option value="ADANIENT" data-price="2340.90">ADANIENT - Adani Enterprises</option>
+                        <option value="ITC" data-price="465.20">ITC - ITC Limited</option>
+                    </select>
+                </div>
+
+                <!-- Quantity -->
+                <div class="order-field">
+                    <label class="order-label">Qty (Shares)</label>
+                    <div class="qty-stepper">
+                        <button class="qty-btn qty-minus" id="qty-minus">−</button>
+                        <input type="number" class="qty-input" id="trade-quantity" value="10" min="1">
+                        <button class="qty-btn qty-plus" id="qty-plus">+</button>
+                    </div>
+                </div>
+
+                <!-- Quick Qty Buttons -->
+                <div class="qty-quick-btns">
+                    <button class="qty-quick" data-qty="1">1</button>
+                    <button class="qty-quick" data-qty="5">5</button>
+                    <button class="qty-quick active" data-qty="10">10</button>
+                    <button class="qty-quick" data-qty="25">25</button>
+                    <button class="qty-quick" data-qty="50">50</button>
+                    <button class="qty-quick" data-qty="100">100</button>
+                </div>
+
+                <!-- Price Display -->
+                <div class="order-price-block">
+                    <div class="order-price-row">
+                        <span class="order-price-label">Price</span>
+                        <span class="order-price-value" id="trade-price-display">₹2,890.50</span>
+                    </div>
+                    <div class="order-price-row">
+                        <span class="order-price-label">Order Value</span>
+                        <span class="order-price-value order-total" id="trade-total-display">₹28,905.00</span>
+                    </div>
+                    <div class="order-price-row">
+                        <span class="order-price-label">Brokerage</span>
+                        <span class="order-price-value order-brokerage">₹0.00</span>
+                    </div>
+                </div>
+
+                <!-- Available Balance Indicator -->
+                <div class="order-margin-info">
+                    <div class="margin-bar">
+                        <div class="margin-bar-fill" id="margin-bar-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="margin-text">
+                        <span>Margin Required</span>
+                        <span id="margin-required">₹28,905.00</span>
+                    </div>
+                </div>
+
+                <!-- Execute Button -->
+                <button class="order-execute-btn order-execute-buy" id="execute-trade-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    BUY RELIANCE
+                </button>
+
+                <p class="order-disclaimer">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Paper trade — no real money involved
+                </p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ═══════════ BOTTOM PANEL (Positions / History) ═══════════ -->
+    <div class="bottom-panel" id="portfolio-section">
+        <div class="bottom-panel-tabs">
+            <button class="bottom-tab active" data-panel="positions">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                Positions
+                <span class="tab-count" id="active-trades-count">0</span>
+            </button>
+            <button class="bottom-tab" data-panel="history" id="history-section">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Trade History
+            </button>
+            <button class="bottom-tab" data-panel="orders">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                Open Orders
+            </button>
+            <div class="bottom-tab-spacer"></div>
+            <button class="bottom-panel-toggle" id="bottom-panel-toggle" title="Expand/Collapse">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+            </button>
+        </div>
+
+        <!-- Positions Panel -->
+        <div class="bottom-panel-content active" id="panel-positions">
+            <div id="positions-empty" class="panel-empty-state">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                <p>No open positions</p>
+                <small>Place a trade from the order panel to get started</small>
+            </div>
+            <div class="table-responsive">
+                <table class="terminal-table" id="positions-table" style="display: none;">
                     <thead>
                         <tr>
-                            <th>Asset</th>
+                            <th>Instrument</th>
                             <th>Type</th>
                             <th>Qty</th>
                             <th>Avg. Price</th>
-                            <th>Current Price</th>
+                            <th>LTP</th>
                             <th>P&L</th>
                             <th>Action</th>
                         </tr>
@@ -280,27 +436,25 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
-            <!-- Trade History -->
-            <div class="card" style="margin-top: 2rem;" id="history-section">
-                <div class="flex-between" style="margin-bottom: 1rem;">
-                    <h3 style="margin: 0;">Trade History</h3>
-                    <span class="demo-badge">DEMO TRADES</span>
-                </div>
-                <div id="history-empty" style="text-align: center; padding: 3rem; color: #555;">
-                    <p style="font-size: 2rem; margin-bottom: 0.5rem;">📋</p>
-                    <p style="font-size: 1.1rem;">No trades yet</p>
-                    <p>Your demo trade history will appear here once you start trading.</p>
-                </div>
-                <table class="data-table" id="history-table" style="display: none;">
+        <!-- History Panel -->
+        <div class="bottom-panel-content" id="panel-history">
+            <div id="history-empty" class="panel-empty-state">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <p>No trade history</p>
+                <small>Completed trades will appear here</small>
+            </div>
+            <div class="table-responsive">
+                <table class="terminal-table" id="history-table" style="display: none;">
                     <thead>
                         <tr>
-                            <th>Date</th>
+                            <th>Date & Time</th>
                             <th>Type</th>
-                            <th>Asset</th>
+                            <th>Instrument</th>
                             <th>Qty</th>
                             <th>Price</th>
-                            <th>Total</th>
+                            <th>Value</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -309,7 +463,16 @@
                 </table>
             </div>
         </div>
-    </section>
+
+        <!-- Orders Panel -->
+        <div class="bottom-panel-content" id="panel-orders">
+            <div class="panel-empty-state">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                <p>No pending orders</p>
+                <small>Limit and SL orders will appear here</small>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
