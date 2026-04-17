@@ -37,5 +37,5 @@ APIs:
 - May conver to a Real trading platform
 - AI-based trading suggestions
 - Real-time market data
-- Advanced chart analysis tools
+- Advanced chart analysis 
 
