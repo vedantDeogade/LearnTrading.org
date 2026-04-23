@@ -268,28 +268,6 @@ a:hover {
 .nav-links a.active { color: var(--neon-cyan); }
 
 .nav-links a:hover { color: var(--neon-cyan); }
-
-/* Theme Toggle Button */
-.theme-toggle-btn {
-    background: var(--input-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 50px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 0.35rem 0.6rem;
-    line-height: 1;
-    transition: var(--transition-fast);
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.theme-toggle-btn:hover {
-    background: var(--border-color);
-    transform: scale(1.08);
-}
-
 /* Mobile Hamburger */
 .menu-toggle {
     display: none;
@@ -322,7 +300,7 @@ a:hover {
 .btn {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     padding: 0.8rem 1.8rem;
     border: none;
     border-radius: var(--border-radius);
