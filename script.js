@@ -262,6 +262,9 @@ function interceptButtons() {
         // Allow menu toggle
         if (target.closest('.menu-toggle')) return;
 
+        // Allow theme toggle
+        if (target.closest('.theme-toggle-btn')) return;
+
         // Block everything else — show the login modal
         const isBtnClass = target.classList.contains('btn');
         const isNavBtn = target.closest('.nav-links') && target.classList.contains('btn');
@@ -305,7 +308,7 @@ function updateAuthUI() {
     } else {
         const li = document.createElement('li');
         li.id = 'nav-auth-section';
-        li.innerHTML = `<a href="#" class="btn btn-primary nav-login-btn" style="padding: 0.7rem 1.5rem; color:#fff;" id="nav-login-link">Login / Sign Up</a>`;
+        li.innerHTML = `<a href="#" class="btn btn-primary nav-login-btn" id="nav-login-link">Login / Sign Up</a>`;
         navLinks.appendChild(li);
         const loginLink = li.querySelector('#nav-login-link');
         if (loginLink) loginLink.addEventListener('click', function(e){ e.preventDefault(); openAuthModal('login'); });
