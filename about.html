@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - LearnTrading.org</title>
+    <meta name="description" content="Learn about LearnTrading.org — a next-generation demo trading platform empowering traders with professional tools and risk-free practice.">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px;">
-    <img src="assets/logo.png" alt="Logo" style="height: 40px;">
-    <span>LEARNTRADING</span>
-</a>
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="LearnTrading Logo">
+                <span>LEARNTRADING</span>
+            </a>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
@@ -23,7 +24,8 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
                 <li><a href="faq.html">FAQ</a></li>
-                <li><a href="dashboard.html" class="btn btn-primary" style="color: #fff;">Dashboard</a></li>
+                <li><button class="theme-toggle-btn" aria-label="Toggle theme">🌙</button></li>
+                <li><a href="dashboard.html" class="btn btn-primary-pill">Get Started</a></li>
             </ul>
         </div>
     </nav>
@@ -31,8 +33,8 @@
     <!-- Hero Section -->
     <section class="hero-section" style="min-height: 60vh;">
         <div class="container text-center">
-            <h1>Building The Future of Trading</h1>
-            <p style="font-size: 1.3rem; max-width: 800px; margin: 0 auto; color: #555;">
+            <h1>Building The Future of Trading Education</h1>
+            <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto;">
                 LearnTrading.org is a next-generation trading platform that empowers traders with institutional-grade tools, cutting-edge technology, and unparalleled market access.
             </p>
         </div>
@@ -41,47 +43,45 @@
     <!-- Mission Section -->
     <section class="section">
         <div class="container">
-            <div class="grid-2" style="gap: 4rem; align-items: center;">
-                <div>
-                    <h2>Our Mission</h2>
-                    <p style="font-size: 1.1rem; color: #000000;">
-                        We believe that everyone deserves access to professional-grade trading tools and fair market opportunities. Our mission is to democratize trading by providing retail traders with the same sophisticated technology previously available only to institutions.
-                    </p>
-                    <p style="font-size: 1.1rem;color: #000000;">
-                        Since our founding in 2018, we've processed over $2.4 billion in trading volume and helped 150,000+ traders achieve their financial goals through transparent, secure, and efficient trading infrastructure.
-                    </p>
-                </div>
+            <div style="max-width: 800px;">
+                <h2>Our Mission</h2>
+                <p style="font-size: 1.1rem; color: var(--text-secondary);">
+                    We believe that everyone deserves access to professional-grade trading tools and fair market opportunities. Our mission is to democratize trading by providing retail traders with the same sophisticated technology previously available only to institutions.
+                </p>
+                <p style="font-size: 1.1rem; color: var(--text-secondary);">
+                    Since our founding in 2018, we've processed over $2.4 billion in trading volume and helped 150,000+ traders achieve their financial goals through transparent, secure, and efficient trading infrastructure.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Values Section -->
-    <section class="section" style="background: rgba(0, 217, 255, 0.03);">
+    <!-- Values Section (Dark) -->
+    <section class="section section-dark">
         <div class="container">
             <h2 class="text-center">Our Core Values</h2>
-            <div class="grid-3" style="margin-top: 3rem;">
+            <div class="grid-3" style="margin-top: 2.5rem;">
                 <div class="card">
-                    <h3>Security First</h3>
+                    <h4>🔒 Security First</h4>
                     <p>We employ military-grade encryption, multi-signature wallets, and cold storage to protect your assets. Your security is our top priority, backed by $250M insurance coverage.</p>
                 </div>
                 <div class="card">
-                    <h3>Transparency</h3>
+                    <h4>🔍 Transparency</h4>
                     <p>No hidden fees, no manipulation. We provide real-time market data, clear pricing, and complete visibility into all platform operations. What you see is what you get.</p>
                 </div>
                 <div class="card">
-                    <h3>Innovation</h3>
+                    <h4>💡 Innovation</h4>
                     <p>We continuously invest in cutting-edge technology to provide faster execution, better analytics, and more sophisticated trading tools. Our R&D team never stops improving.</p>
                 </div>
                 <div class="card">
-                    <h3>Education</h3>
+                    <h4>📚 Education</h4>
                     <p>We believe informed traders make better decisions. Our platform includes comprehensive learning resources, market analysis, and trading tutorials to help you succeed.</p>
                 </div>
                 <div class="card">
-                    <h3>Customer Success</h3>
+                    <h4>🤝 Customer Success</h4>
                     <p>Your success is our success. Our 24/7 support team is dedicated to resolving issues quickly and helping you make the most of our platform's capabilities.</p>
                 </div>
                 <div class="card">
-                    <h3>Fair Markets</h3>
+                    <h4>⚖️ Fair Markets</h4>
                     <p>We ensure equal access to markets for all traders. No preferential treatment, no front-running. Everyone gets the same execution quality and pricing.</p>
                 </div>
             </div>
@@ -92,7 +92,7 @@
     <section class="section">
         <div class="container">
             <h2 class="text-center">Technology Infrastructure</h2>
-            <p class="text-center" style="font-size: 1.15rem; max-width: 700px; margin: 0 auto 3rem; color: #555;">
+            <p class="text-center" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto 3rem;">
                 Our platform is built on enterprise-grade infrastructure designed for speed, reliability, and security
             </p>
             
@@ -100,7 +100,7 @@
                 <div class="card">
                     <h4>High-Performance Matching Engine</h4>
                     <p>Process 1.4 million orders per second with sub-millisecond latency. Our proprietary matching engine ensures instant execution and minimal slippage even during high volatility.</p>
-                    <ul style="color: #ffffff; margin-top: 1rem;">
+                    <ul class="tier-feature-list" style="margin-top: 1rem;">
                         <li>99.9% uptime SLA</li>
                         <li>Distributed architecture across 12 data centers</li>
                         <li>Real-time risk management</li>
@@ -111,7 +111,7 @@
                 <div class="card">
                     <h4>Advanced Security Infrastructure</h4>
                     <p>Multi-layered security protecting your data and assets at every level. Regular security audits and penetration testing by leading cybersecurity firms.</p>
-                    <ul style="color: #ffffff; margin-top: 1rem;">
+                    <ul class="tier-feature-list" style="margin-top: 1rem;">
                         <li>256-bit SSL/TLS encryption</li>
                         <li>Multi-signature cold wallet storage</li>
                         <li>DDoS protection and rate limiting</li>
@@ -122,7 +122,7 @@
                 <div class="card">
                     <h4>Smart Order Routing</h4>
                     <p>Intelligent algorithms scan multiple liquidity providers to find the best execution price for your trades, saving you money on every transaction.</p>
-                    <ul style="color: #ffffff; margin-top: 1rem;">
+                    <ul class="tier-feature-list" style="margin-top: 1rem;">
                         <li>Aggregated liquidity from 50+ venues</li>
                         <li>Price improvement algorithms</li>
                         <li>Reduced market impact</li>
@@ -133,7 +133,7 @@
                 <div class="card">
                     <h4>Real-Time Analytics</h4>
                     <p>Advanced charting, technical indicators, and market analysis tools powered by machine learning give you the edge you need to make profitable trades.</p>
-                    <ul style="color: #ffffff; margin-top: 1rem;">
+                    <ul class="tier-feature-list" style="margin-top: 1rem;">
                         <li>150+ technical indicators</li>
                         <li>AI-powered pattern recognition</li>
                         <li>Customizable dashboards</li>
@@ -144,16 +144,15 @@
         </div>
     </section>
 
-    <!-- Team Section -->
-    <section class="section" style="background: rgba(0, 217, 255, 0.03);">
+    <!-- Team Section (Dark) -->
+    <section class="section section-dark">
         <div class="container">
             <h2 class="text-center">Team</h2>
-            
-            <div>
+            <div style="max-width: 400px; margin: 2rem auto 0;">
                 <div class="card text-center">
                     <h4>Vedant Deogade</h4>
-                    <p style="color:#fff; margin-bottom: 1rem;">Founder and Developer</p>
-                    <p>Student and Developer </p>
+                    <p style="margin-bottom: 0.5rem;">Founder and Developer</p>
+                    <p>Student and Developer</p>
                 </div>
             </div>
         </div>
@@ -162,12 +161,10 @@
     <!-- CTA Section -->
     <section class="section">
         <div class="container">
-            <div class="card" style="background: var(--gradient-primary); text-align: center; padding: 3rem;">
-                <h2 style="color: #ffffff;">Join 150,000+ Traders Worldwide</h2>
-                <p style="font-size: 1.2rem; color: rgba(243, 243, 243, 0.9); margin-bottom: 2rem;">
-                    Experience the future of trading today
-                </p>
-                <a href="dashboard.html" class="btn" style="background:#7aaa82; color: var(--primary-bg);">Start Trading Now</a>
+            <div class="cta-section">
+                <h2>Join 150,000+ Traders Worldwide</h2>
+                <p>Experience the future of trading today</p>
+                <a href="dashboard.html" class="btn btn-primary-pill">Start Trading Now</a>
             </div>
         </div>
     </section>
@@ -178,7 +175,7 @@
             <div class="footer-grid">
                 <div class="footer-section">
                     <h4>LearnTrading</h4>
-                    <p style="color: #555;">Professional trading platform built for learning trading.</p>
+                    <p style="color: var(--footer-text);">Professional trading platform built for learning trading.</p>
                 </div>
                 <div class="footer-section">
                     <h4>Platform</h4>
@@ -192,7 +189,6 @@
                     <h4>Company</h4>
                     <ul class="footer-links">
                         <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
                         <li><a href="faq.html">FAQ</a></li>
                     </ul>
                 </div>
