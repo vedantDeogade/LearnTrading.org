@@ -5,7 +5,6 @@
 
 /* Import Fonts — Inter (closest to BinancePlex available via Google Fonts) */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 /* ===================================
    LIGHT MODE (Default)
    =================================== */
@@ -263,19 +262,19 @@ a:hover {
 
 .logo {
     font-family: var(--font-primary);
-    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    font-size: clamp(2rem, 2vw, 2rem);
     font-weight: 800;
     color: var(--text-primary);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     transition: var(--transition-normal);
     display: flex;
-    align-items: center;
+    align-items:center;
     gap: 8px;
     flex-shrink: 0;
     text-decoration: none;
 }
 
-.logo img { height: 36px; }
+.logo img { height: 50px; }
 
 .logo:hover {
     opacity: 0.85;
@@ -312,7 +311,7 @@ a:hover {
 
 .nav-links a:hover::after,
 .nav-links a.active::after {
-    width: 100%;
+    width: 0%;
 }
 
 .nav-links a.active { color: var(--binance-yellow); }
@@ -399,7 +398,7 @@ a:hover {
 
 .btn-primary:hover {
     background: var(--focus-blue);
-    color: #FFFFFF;
+    color: #ffffff;
 }
 
 .btn-primary:active {
@@ -417,8 +416,8 @@ a:hover {
 }
 
 .btn-primary-pill:hover {
-    background: var(--focus-blue);
-    color: #FFFFFF;
+    background: var( --focus-blue);
+    color: #ffffff;
 }
 
 /* Secondary — Outlined */
