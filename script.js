@@ -676,10 +676,112 @@ function updateDashboardStats() {
     }
 }
 
+// Render portfolio cards
+function renderPortfolio() {
+    const account = getAccount();
+    const positions = account.positions;
+    const keys = Object.keys(positions);
+
+    const summaryEl = document.getElementById('portfolio-summary');
+    const cardsEl = document.getElementById('portfolio-cards');
+    const emptyEl = document.getElementById('portfolio-empty');
+    if (!cardsEl || !emptyEl) return;
+
+    if (keys.length === 0) {
+        if (summaryEl) summaryEl.style.display = 'none';
+        cardsEl.innerHTML = '';
+        emptyEl.style.display = 'flex';
+        return;
+    }
+
+    emptyEl.style.display = 'none';
+
+    // Calculate totals for summary
+    let totalInvested = 0;
+    let totalCurrent = 0;
+    const posData = keys.map(symbol => {
+        const pos = positions[symbol];
+        const currentPrice = stockPrices[symbol] ? stockPrices[symbol].price : pos.avgPrice;
+        const invested = pos.avgPrice * pos.quantity;
+        const current = currentPrice * pos.quantity;
+        const pnl = current - invested;
+        const pnlPercent = ((currentPrice - pos.avgPrice) / pos.avgPrice * 100).toFixed(2);
+        totalInvested += invested;
+        totalCurrent += current;
+        return { symbol, pos, currentPrice, invested, current, pnl, pnlPercent };
+    });
+
+    const totalPnl = totalCurrent - totalInvested;
+    const totalPnlPercent = totalInvested > 0 ? ((totalPnl / totalInvested) * 100).toFixed(2) : '0.00';
+
+    // Update summary header
+    if (summaryEl) {
+        summaryEl.style.display = 'flex';
+        const investedEl = document.getElementById('portfolio-invested');
+        const currentEl = document.getElementById('portfolio-current');
+        const pnlEl = document.getElementById('portfolio-pnl');
+        const holdingsEl = document.getElementById('portfolio-holdings-count');
+
+        if (investedEl) investedEl.textContent = formatINR(totalInvested);
+        if (currentEl) currentEl.textContent = formatINR(totalCurrent);
+        if (pnlEl) {
+            pnlEl.textContent = `${formatINR(totalPnl)} (${totalPnlPercent}%)`;
+            pnlEl.className = 'portfolio-summary-value ' + (totalPnl >= 0 ? 'profit-positive' : 'profit-negative');
+        }
+        if (holdingsEl) holdingsEl.textContent = keys.length;
+    }
+
+    // Render cards
+    cardsEl.innerHTML = posData.map(d => {
+        const isPositive = d.pnl >= 0;
+        const pnlClass = isPositive ? 'positive' : 'negative';
+        const pnlBarWidth = Math.min(100, Math.abs(parseFloat(d.pnlPercent)) * 5);
+        const weight = totalCurrent > 0 ? ((d.current / totalCurrent) * 100).toFixed(1) : '0.0';
+
+        return `
+            <div class="portfolio-card">
+                <div class="portfolio-card-header">
+                    <div class="portfolio-card-ticker">
+                        <span class="portfolio-card-symbol">${d.symbol}</span>
+                        <span class="portfolio-card-name">${d.pos.name}</span>
+                    </div>
+                    <span class="portfolio-card-badge ${pnlClass}">${isPositive ? '▲' : '▼'} ${d.pnlPercent}%</span>
+                </div>
+                <div class="portfolio-card-body">
+                    <div class="portfolio-card-field">
+                        <span class="portfolio-card-field-label">Shares</span>
+                        <span class="portfolio-card-field-value">${d.pos.quantity}</span>
+                    </div>
+                    <div class="portfolio-card-field">
+                        <span class="portfolio-card-field-label">Avg Price</span>
+                        <span class="portfolio-card-field-value">${formatINR(d.pos.avgPrice)}</span>
+                    </div>
+                    <div class="portfolio-card-field">
+                        <span class="portfolio-card-field-label">Current</span>
+                        <span class="portfolio-card-field-value">${formatINR(d.currentPrice)}</span>
+                    </div>
+                    <div class="portfolio-card-field">
+                        <span class="portfolio-card-field-label">Value</span>
+                        <span class="portfolio-card-field-value">${formatINR(d.current)}</span>
+                    </div>
+                </div>
+                <div class="portfolio-pnl-bar">
+                    <div class="portfolio-pnl-bar-fill ${pnlClass}" style="width: ${pnlBarWidth}%"></div>
+                </div>
+                <div class="portfolio-card-footer">
+                    <span class="portfolio-card-pnl ${pnlClass}">${isPositive ? '+' : ''}${formatINR(d.pnl)}</span>
+                    <span class="portfolio-card-weight">${weight}% of portfolio</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
 // Render everything (dashboard)
 function renderAll() {
     updateDashboardStats();
     renderPositions();
+    renderPortfolio();
     renderHistory();
     updateTradePreview();
 }

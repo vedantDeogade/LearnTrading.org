@@ -398,6 +398,10 @@
                 Positions
                 <span class="tab-count" id="active-trades-count">0</span>
             </button>
+            <button class="bottom-tab" data-panel="portfolio">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                Portfolio
+            </button>
             <button class="bottom-tab" data-panel="history" id="history-section">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 Trade History
@@ -435,6 +439,41 @@
                     <tbody id="positions-body">
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- Portfolio Panel -->
+        <div class="bottom-panel-content" id="panel-portfolio">
+            <div id="portfolio-section-content">
+                <div class="portfolio-summary" id="portfolio-summary" style="display: none;">
+                    <div class="portfolio-summary-stat">
+                        <span class="portfolio-summary-label">Total Invested</span>
+                        <span class="portfolio-summary-value" id="portfolio-invested">₹0.00</span>
+                    </div>
+                    <div class="portfolio-summary-divider"></div>
+                    <div class="portfolio-summary-stat">
+                        <span class="portfolio-summary-label">Current Value</span>
+                        <span class="portfolio-summary-value" id="portfolio-current">₹0.00</span>
+                    </div>
+                    <div class="portfolio-summary-divider"></div>
+                    <div class="portfolio-summary-stat">
+                        <span class="portfolio-summary-label">Total P&L</span>
+                        <span class="portfolio-summary-value profit-positive" id="portfolio-pnl">₹0.00 (0%)</span>
+                    </div>
+                    <div class="portfolio-summary-divider"></div>
+                    <div class="portfolio-summary-stat">
+                        <span class="portfolio-summary-label">Holdings</span>
+                        <span class="portfolio-summary-value" id="portfolio-holdings-count">0</span>
+                    </div>
+                </div>
+                <div class="portfolio-grid" id="portfolio-cards"></div>
+                <div class="portfolio-empty" id="portfolio-empty">
+                    <div class="portfolio-empty-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <p>Your portfolio is empty</p>
+                    <small>Buy stocks to see your portfolio with P&L tracking here</small>
+                </div>
             </div>
         </div>
 
