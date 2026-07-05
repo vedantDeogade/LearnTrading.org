@@ -193,18 +193,11 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(240, 185, 11, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255, 208, 0, 0.03) 0%, transparent 40%);
-    background-color: var(--primary-bg);
     z-index: -1;
     pointer-events: none;
 }
 
 [data-theme="dark"] body::before {
-    background:
-        radial-gradient(circle at 20% 20%, rgba(240, 185, 11, 0.02) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255, 208, 0, 0.01) 0%, transparent 40%);
     background-color: var(--primary-bg);
 }
 
@@ -248,7 +241,7 @@ h4 {
     margin-bottom: var(--space-3);
 }
 
-p {
+p {    
     margin-bottom: var(--space-4);
     color: var(--text-muted);
     font-size: 1rem;
