@@ -233,7 +233,6 @@ function socialLogin(provider) {
 }
 
 // ─── BUTTON INTERCEPTION ─────────────────────
-// If user is NOT logged in, intercept clicks on action buttons/links
 function interceptButtons() {
     document.addEventListener('click', function(e) {
         if (isLoggedIn()) return; // let everything through
