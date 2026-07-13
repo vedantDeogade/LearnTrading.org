@@ -367,7 +367,7 @@ function saveAccount(account) {
     localStorage.setItem('learntrading_demo_account', JSON.stringify(account));
 }
 
-// Stock prices with simulated fluctuation
+// Stock prices with simulated 
 const stockPrices = {
     'RELIANCE': { name: 'Reliance Industries', price: 2890.50 },
     'TCS': { name: 'Tata Consultancy Services', price: 3950.75 },
