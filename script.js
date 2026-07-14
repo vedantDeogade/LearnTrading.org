@@ -438,7 +438,7 @@ function selectTradeType(type) {
     }
 }
 
-// Update trade preview
+// Update trade 
 function updateTradePreview() {
     const assetSelect = document.getElementById('trade-asset');
     const quantityEl = document.getElementById('trade-quantity');
