@@ -38,3 +38,4 @@ APIs:
 - AI-based trading suggestions
 - Real-time market data
 - Advanced chart analysis
+- 
