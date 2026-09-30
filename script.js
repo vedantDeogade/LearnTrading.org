@@ -970,14 +970,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const collapseBtn = document.getElementById('watchlist-collapse-btn');
     const sidebar = document.getElementById('watchlist-sidebar');
     if (collapseBtn && sidebar) {
-        collapseBtn.addEventListener('click', function() {
+        collapseBtn.addEventListener('click', function(){
             sidebar.classList.toggle('collapsed');
         });
     }
 
     // ----- Sidebar Mobile Toggle -----
     const sidebarMobileToggle = document.getElementById('sidebar-mobile-toggle');
-    if (sidebarMobileToggle && sidebar) {
+    if (sidebarMobileToggle && sidebar){
         sidebarMobileToggle.addEventListener('click', function() {
             sidebar.classList.toggle('mobile-open');
         });
@@ -1160,3 +1160,4 @@ simulatePriceChange = function() {
         }
     }
 };
+
